@@ -26,7 +26,7 @@ Component({
         },
 
         pieColor: {
-            value: '#000000',
+            value: '#cccccc',
             type: String
         },
 

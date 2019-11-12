@@ -6,7 +6,7 @@
       data-radius="{{pieRadius}}"
       change:prop="{{wxs.angleChanged}}"
       prop="{{angle}}">
-    <wxs module="wxs" src="./pie.wxs"></wxs>
+    <wxs module="wxs" src="./index.wxs"></wxs>
     <view id="pie-back-ground"
           class="round"
           style="position:relative !important;width:{{pieRadius*2}}px;height:{{pieRadius*2}}px;">

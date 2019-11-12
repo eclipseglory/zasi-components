@@ -1,0 +1,15 @@
+{
+  "name": "pie",
+  "version": "1.0.0",
+  "description": "miniprogram pie component",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "miniprogram": "src",
+  "keywords": [
+    "miniprogram"
+  ],
+  "author": "老脸叔叔",
+  "license": "MIT"
+}
