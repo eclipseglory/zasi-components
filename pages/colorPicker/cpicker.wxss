@@ -1,0 +1,39 @@
+
+.example-main {
+  font-size: 0.75em;
+  box-sizing: border-box;
+  padding: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: lightgray;
+}
+
+.button {
+  width: 90%;
+  margin-bottom: 2vw;
+}
+
+
+.margin {
+  margin-bottom: 2vw;
+}
+
+.custom-center-class{
+  border-radius: 10px !important; /*加important修改优先级*/
+  box-shadow: none !important;
+  width: 100% !important; /*这个属性无法修改的，优先级已经固定*/
+}
+
+.emptyPointerClass{
+  border: solid 0 !important;
+  box-shadow : none !important;
+  background-color: transparent !important;
+}
+.custom-pointer-class {
+  border: solid 0 !important;
+  background-color: greenyellow !important;
+  border-radius: 5px  !important;
+  box-shadow: 10px 10px 15px black !important;
+}

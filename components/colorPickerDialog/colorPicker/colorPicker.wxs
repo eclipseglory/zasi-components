@@ -1,0 +1,615 @@
+var ringPointerId = "#ring-pointer";
+var centerViewId = "#center-color-view";
+var mainContainerId = '#main-container';
+var PFS = 1000 / 60;
+var PI_DIV_180 = Math.PI / 180;
+var H_DIV_PI = 180 / Math.PI;
+
+
+function touchSliderPointer(event, instance) {
+    if (instance.getState().lock) return;
+    var pointer = instance.selectComponent('#' + event.currentTarget.id);
+    var type = pointer.getDataset().type;
+
+    instance.getState()['canMoveSlider' + type] = true;
+    return false;
+}
+
+function touchMoveSliderPointer(event, instance) {
+    var state = instance.getState();
+    if (state.lock) return;
+    var pointer = instance.selectComponent('#' + event.currentTarget.id);
+    var type = pointer.getDataset().type;
+    var canMove = instance.getState()['canMoveSlider' + type];
+
+    if (!canMove) return;
+    var color = state.lastColor;
+    var touch = event.touches[0];
+    var ds = getSliderDataset(instance, type);
+
+    var pointer = instance.selectComponent('#slider-pointer-' + type);
+    var widthPercent = pointer.getDataset().width;
+    var pointerHeight = pointer.getDataset().height;
+    var rect = ds.rect;
+    var x = touch.clientX;
+    var y = touch.clientY;
+    var sliderHeight = rect.height;
+    var hw = widthPercent;
+    //指定一个合理的可滑动区域，如果触摸超出，就停止滑动
+    var p1 = {x: rect.left - hw, y: rect.top - pointerHeight / 2};
+    var p2 = {x: rect.right + hw, y: rect.top - pointerHeight / 2};
+    var p3 = {x: rect.right - hw, y: rect.bottom + pointerHeight / 2};
+    var p4 = {x: rect.left + hw, y: rect.bottom + pointerHeight / 2};
+    if (pointInTheRegion({x: touch.clientX, y: touch.clientY}, p1, p2, p3, p4)) {
+        var dx = rect.right - x;
+        var value = dx / rect.width;
+        if (value < 0) value = 0;
+        if (value > 1) value = 1;
+        if (type == 's') {
+            changeColorValue({
+                h: color.h, s: value, v: color.v, t: color.t
+            }, instance, true);
+        } else if (type == 'v') {
+            changeColorValue({
+                h: color.h, s: color.s, v: value, t: color.t
+            }, instance, true);
+        } else if (type == 't') {
+            changeColorValue({
+                h: color.h, s: color.s, v: color.v, t: value
+            }, instance, true);
+        }
+
+    } else {
+        instance.getState()['canMoveSlider' + type] = false;
+    }
+    return false;
+}
+
+function updateSliderPointerPosition(instance, key) {
+    var state = instance.getState();
+    var color = state.lastColor;
+    var value = color[key];
+
+    var pointer = instance.selectComponent('#slider-pointer-' + key);
+    var slider = instance.selectComponent('#slider-' + key);
+    var widthPercent = pointer.getDataset().width;
+    var rect = slider.getDataset().rect;
+    var x = rect.width - rect.width * value;
+
+    pointer.setStyle({
+        left: x - widthPercent / 2 + 'px !important'
+    })
+
+}
+
+function tapRingPointer(event, ownerInstance) {
+    var lock = ownerInstance.getState().lock;
+    if (lock) return;
+    var touch = event.touches[0];
+    var ds = getCanvasDataset(ownerInstance);
+    var x = touch.clientX - ds.containerRect.left;
+    var y = touch.clientY - ds.containerRect.top;
+    var re = inRingArea({x: x, y: y}, ownerInstance);
+    if (re.in) {
+        //自动移动到该处,锁住事件触发
+        ownerInstance.getState().lock = true;
+        ownerInstance.callMethod('lockEventTrigger');
+        animationMoveRingPointer(re.angle, ownerInstance);
+    } else {
+    }
+}
+
+function animationMoveRingPointer(endAngle, instance) {
+    if (endAngle < 0) endAngle += 360;
+    if (endAngle > 360) endAngle -= 360;
+    var state = instance.getState();
+    //匀速
+    var lastColor = state.lastColor;
+    var start = lastColor.h;
+    var ds = getCanvasDataset(instance);
+    var animationDuration = ds.animationDuration;
+    var totalRN = Math.floor(animationDuration / PFS);
+    var delta = (endAngle - start) / totalRN;
+
+    var totalDelta = Math.abs(endAngle - start);
+    //如果大于180，你懂的
+    if (totalDelta > 180) {
+        totalDelta -= 360;
+        var d = totalDelta / totalRN;
+        if (delta < 0) d *= -1;
+        delta = d;
+    }
+
+    var rn = 0;
+    state.temp = lastColor.h;
+
+    function moveIt() {
+        var current = state.temp + delta;
+        state.temp = current;
+        if (current < 0) current += 360;
+        if (current > 360) current -= 360;
+        rn++;
+        if (rn > totalRN) {
+            changeColorValue({h: endAngle, s: lastColor.s, v: lastColor.v, t: lastColor.t}, instance, false);
+            instance.getState().lock = false;
+            instance.callMethod('unLockEventTrigger');
+            return;
+        } else {
+            changeColorValue({h: current, s: lastColor.s, v: lastColor.v, t: lastColor.t}, instance, false);
+        }
+        instance.requestAnimationFrame(moveIt);
+    }
+
+    moveIt();
+
+}
+
+function touchRingPointer(event, ownerInstance) {
+    var lock = ownerInstance.getState().lock;
+    if (lock) return;
+    ownerInstance.getState().canMoveRingPointer = true;
+    return false;
+}
+
+function touchMoveRingPointer(event, ownerInstance) {
+    var lock = ownerInstance.getState().lock;
+    if (lock) return;
+    var state = ownerInstance.getState();
+    if (state.canMoveRingPointer) {
+        var touch = event.touches[0];
+        var ds = getCanvasDataset(ownerInstance);
+        var x = touch.clientX - ds.containerRect.left;
+        var y = touch.clientY - ds.containerRect.top;
+        var c = ownerInstance.selectComponent('#' + event.currentTarget.id);
+
+        // var res = inRingArea({x: x, y: y}, ownerInstance);
+        var res = inRingRectArea({x: x, y: y}, ownerInstance);
+        if (res.in) {
+            var center = ds.containerRect.center;
+            var dx = x - center.x;
+            var dy = y - center.y;
+            var radian = Math.atan2(dy, dx);
+            var angle = radian * H_DIV_PI;
+            if (angle > 360) angle -= 360;
+            if (angle < 0) angle += 360;
+            var lastAngle = ownerInstance.getState().lastAngle
+            if (lastAngle == null) {
+                ownerInstance.getState().lastAngle = angle;
+            } else {
+                var delta = Math.abs(lastAngle - angle);
+                ownerInstance.getState().lastAngle = angle;
+            }
+            var lastColor = state.lastColor;
+            if (lastColor.h != angle) {
+                changeColorValue({h: angle, s: lastColor.s, v: lastColor.v, t: lastColor.t}, ownerInstance, true);
+            }
+        } else {
+            state.canMoveRingPointer = false;
+        }
+        return false; // 很重要
+    }
+}
+
+function changeColorValue(newValue, instance, rAF) {
+    var state = instance.getState();
+    var lastColor = state.lastColor;
+
+
+    var mainContainer = instance.selectComponent(mainContainerId);
+    var ringPointer = instance.selectComponent(ringPointerId);
+    var ds = mainContainer.getDataset();
+    var rect = ds.containerRect;
+    var radius = ds.ringRadius;
+    var showOpacity = ds.showOpacity;
+    if (showOpacity == 'true') showOpacity = true;
+    if (showOpacity == 'false') showOpacity = false;
+    if (lastColor == null) {
+        //说明第一次改变color值，全部设置一遍
+        state.lastColor = newValue;
+        if (rAF) {
+            instance.requestAnimationFrame(function () {
+                setRingPointerPosition(state.lastColor.h, ringPointer, radius, rect.center);
+                setCenterViewColor(instance);
+                setSliderColor(instance);
+                updateSliderPointerPosition(instance, 's');
+                updateSliderPointerPosition(instance, 'v');
+                if (showOpacity)
+                    updateSliderPointerPosition(instance, 't');
+            });
+        } else {
+            setRingPointerPosition(state.lastColor.h, ringPointer, radius, rect.center);
+            setCenterViewColor(instance);
+            setSliderColor(instance);
+            updateSliderPointerPosition(instance, 's');
+            updateSliderPointerPosition(instance, 'v');
+            if (showOpacity)
+                updateSliderPointerPosition(instance, 't');
+        }
+
+
+    } else {
+        var color = lastColor;
+        if (newValue.h != color.h || newValue.s != color.s || newValue.v != color.v || newValue.t != color.t) {
+            if (newValue.h != color.h || newValue.s != color.s || newValue.v != color.v) {
+                color.hex = hsv2rgb(color.h, color.s, color.v).hex;
+                color.rawHex = hsv2rgb(color.h, 1, 1).hex;
+            }
+
+            instance.callMethod('colorChange', color);
+
+            var oldH = color.h;
+            var oldS = color.s;
+            var oldV = color.v;
+            var oldT = color.t;
+            color.h = newValue.h;
+            color.s = newValue.s;
+            color.v = newValue.v;
+            color.t = newValue.t;
+            //这个是基本色，一改全部都要刷新
+            var ringUpdated = false;
+            var tUpdated = false;
+            var sUpdated = false;
+            var vUpdated = false;
+            if (color.h != oldH) {
+                if (rAF) {
+                    instance.requestAnimationFrame(function () {
+                        setRingPointerPosition(color.h, ringPointer, radius, rect.center);
+                        setCenterViewColor(instance);
+                        setSliderColor(instance);
+                        ringUpdated = true;
+                    });
+                } else {
+                    setRingPointerPosition(color.h, ringPointer, radius, rect.center);
+                    setCenterViewColor(instance);
+                    setSliderColor(instance);
+                    ringUpdated = true;
+                }
+            }
+            // 这里就部分刷新
+            if (showOpacity) {
+                if (color.t != oldT) {
+                    if (rAF) {
+                        instance.requestAnimationFrame(function () {
+                            updateSliderPointerPosition(instance, 't');
+                            if (!ringUpdated)
+                                setCenterViewColor(instance);
+                            tUpdated = true;
+                            ringUpdated = true;
+                        })
+                    } else {
+                        updateSliderPointerPosition(instance, 't');
+                        if (!ringUpdated)
+                            setCenterViewColor(instance);
+                        tUpdated = true;
+                        ringUpdated = true;
+                    }
+                }
+            }
+            if (color.s != oldS) {
+                if (rAF) {
+                    instance.requestAnimationFrame(function () {
+                        updateSliderPointerPosition(instance, 's');
+                        if (!ringUpdated)
+                            setCenterViewColor(instance);
+                        sUpdated = true;
+                        ringUpdated = true;
+                    })
+                } else {
+                    updateSliderPointerPosition(instance, 's');
+                    if (!ringUpdated)
+                        setCenterViewColor(instance);
+                    sUpdated = true;
+                    ringUpdated = true;
+                }
+            }
+
+            if (color.v != oldV) {
+                if (rAF) {
+                    instance.requestAnimationFrame(function () {
+                        updateSliderPointerPosition(instance, 'v');
+                        if (!ringUpdated)
+                            setCenterViewColor(instance);
+                        vUpdated = true;
+                        ringUpdated = true;
+                    })
+                } else {
+                    updateSliderPointerPosition(instance, 'v');
+                    if (!ringUpdated)
+                        setCenterViewColor(instance);
+                    vUpdated = true;
+                    ringUpdated = true;
+                }
+            }
+        }
+
+    }
+}
+
+
+function _setSliderColor(instance, type) {
+    var slider = instance.selectComponent('#slider-' + type);
+    var color = instance.getState().lastColor;
+    var endColor = '#ffffff';
+    // var webkit = 'background-image: -webkit-linear-gradient(transparent 50%, rgba(200, 0, 0, .5) 50%, rgba(200, 0, 0, .5)), -webkit-linear-gradient(0deg, transparent 50%, rgba(200, 0, 0, .5) 50%, rgba(200, 0, 0, .5));';
+    // var moz = 'background-image: -moz-linear-gradient(transparent 50%, rgba(200, 0, 0, .5) 50%, rgba(200, 0, 0, .5)), -moz-linear-gradient(0deg, transparent 50%, rgba(200, 0, 0, .5) 50%, rgba(200, 0, 0, .5));';
+    // var normal = 'repeating-linear-gradient(transparent 50%, rgba(200, 0, 0, .5) 5px, rgba(200, 0, 0, .5)),repeating-linear-gradient(90deg, transparent 50%, rgba(200, 0, 0, .5) 5px, rgba(200, 0, 0, .5));';
+    //
+    // if (type == 't') {
+    //     endColor = 'transparent';
+    //     slider.setStyle({
+    //         'background-image': normal
+    //     })
+    //     return;
+    // }
+
+    if (type == 'v') {
+        endColor = '#000000'
+    }
+    if (type == 't') {
+        endColor = 'rgba(255,255,255,0)';
+        slider.setStyle({
+            'background-image': 'linear-gradient(to right,' + color.rawHex + ',' + endColor + ' 90%) !important'
+        })
+        return;
+    }
+    slider.setStyle({
+        'background-image': 'linear-gradient(to right,' + color.rawHex + ',' + endColor + ') !important'
+    })
+}
+
+function setSliderColor(instance) {
+    _setSliderColor(instance, 's');
+    _setSliderColor(instance, 'v');
+    var ds = getCanvasDataset(instance);
+    var showOpacity = ds.showOpacity;
+    if (showOpacity == 'true') showOpacity = true;
+    if (showOpacity == 'false') showOpacity = false;
+    if (showOpacity)
+        _setSliderColor(instance, 't');
+}
+
+// function setOpacitySliderColor(instance) {
+//     var slider = instance.selectComponent('#slider-' + type);
+//     var color = instance.getState().lastColor;
+//     slider.setStyle({
+//         'background-image': 'linear-gradient(to right,' + color.rawHex + ', transparent)'
+//     })
+// }
+
+function setCenterViewColor(instance) {
+    var color = instance.getState().lastColor;
+    var centerView = instance.selectComponent(centerViewId);
+    centerView.setStyle({
+        'background-color': color.hex + ' !important',
+        'opacity': color.t + ' !important'
+    })
+}
+
+function propertyChangeWatcher(newValue, oldValue, ownerInstance, instance) {
+    if (newValue != null && newValue != oldValue) {
+        if (newValue.hex == null) {
+            newValue.hex = hsv2rgb(newValue.h, newValue.s, newValue.v).hex;
+        }
+        if (newValue.rawHex == null) {
+            newValue.rawHex = newValue.hex;
+        }
+        var lastColor = ownerInstance.getState().lastColor;
+        if (lastColor == null) {
+            //第一次传值，直接修改颜色
+            changeColorValue(newValue, ownerInstance, true);
+        } else {
+            //动画形式进行修改,但必须要hsv的值
+            if (newValue.h == null || newValue.s == null || newValue.v == null) {
+                return;
+            }
+            var ds = getCanvasDataset(ownerInstance);
+            var animationDuration = ds.animationDuration;
+            var totalRN = Math.floor(animationDuration / PFS);
+            var refreshCount = 0;
+            var deltaH = newValue.h - lastColor.h;
+            deltaH = deltaH / totalRN;
+            var deltaS = newValue.s - lastColor.s;
+            deltaS = deltaS / totalRN;
+            var deltaV = newValue.v - lastColor.v;
+            deltaV = deltaV / totalRN;
+            var deltaT = newValue.t - lastColor.t;
+            deltaT = deltaT / totalRN;
+
+            function changeByAnimation() {
+                var newColor = {};
+                newColor.h = lastColor.h + deltaH;
+                newColor.s = lastColor.s + deltaS;
+                newColor.v = lastColor.v + deltaV;
+                newColor.t = lastColor.t + deltaT;
+                refreshCount++;
+                if (refreshCount >= totalRN) {
+                    changeColorValue(newValue, ownerInstance, false);
+                    ownerInstance.getState().lock = false;
+                    ownerInstance.callMethod('unLockEventTrigger');
+                    return;
+                } else {
+                    changeColorValue(newColor, ownerInstance, false);
+                }
+                ownerInstance.requestAnimationFrame(changeByAnimation);
+            }
+            ownerInstance.getState().lock =true;
+            ownerInstance.callMethod('lockEventTrigger');
+            changeByAnimation();
+        }
+    }
+}
+
+function setRingPointerPosition(h, component, radius, center) {
+    var radian = h * PI_DIV_180;
+    var ds = component.getDataset();
+    var r = ds.radius;
+    // 现在radius缩小点，因为没使用canvas了。。。。
+
+    // transform:rotate(7deg);
+    // -ms-transform:rotate(7deg); 	/* IE 9 */
+    // -moz-transform:rotate(7deg); 	/* Firefox */
+    // -webkit-transform:rotate(7deg); /* Safari 和 Chrome */
+    // -o-transform:rotate(7deg); 	/* Opera */
+
+    radius = radius - (radius * 7.05) / 200;
+    var x = Math.cos(radian) * radius + center.x;
+    var y = Math.sin(radian) * radius + center.y;
+    x -= r;
+    y -= r;
+    component.setStyle({
+        left: x + 'px !important',
+        top: y + 'px !important',
+        transform: 'rotate(' + h + 'deg) !important'
+    });
+}
+
+function inRingRectArea(point, instance) {
+    var ds = getCanvasDataset(instance);
+    var ds1 = getRingPointerDataset(instance);
+    var r = ds.ringRadius;
+    r += ds1.radius * 2; //让可触发滑动的区域稍微大一点
+    var center = ds.containerRect.center;
+    var dx = point.x - center.x;
+    var dy = point.y - center.y;
+    var radian = Math.atan2(dy, dx);
+
+    /**
+     * 注释的代码是利用一个rect来测试是否超过区域、
+     var cx = center.x;
+     var cy = center.y;
+     // var cx = Math.cos(radian) * r + center.x;
+     // var cy = Math.sin(radian) * r + center.y;
+     // r = ds1.radius * (1 + ds1.extendRadiusPercent);
+     var p1 = {x: cx - r, y: cy - r};
+     var p2 = {x: cx + r, y: cy - r};
+     var p3 = {x: cx + r, y: cy + r};
+     var p4 = {x: cx - r, y: cy + r};
+     return {in: pointInTheRegion(point, p1, p2, p3, p4), angle: radian * H_DIV_PI}
+     */
+        //区域是一个圆，进行判断:
+    var distance = dx * dx + dy * dy;
+    var inround = false;
+    if (r * r >= distance) inround = true;
+    return {in: inround, angle: radian * H_DIV_PI}
+
+}
+
+
+function inRingArea(point, instance) {
+    var ds = getCanvasDataset(instance);
+    var ds1 = getRingPointerDataset(instance);
+    var r = ds.ringRadius;
+    var center = ds.containerRect.center;
+    var dx = point.x - center.x;
+    var dy = point.y - center.y;
+    var radian = Math.atan2(dy, dx);
+
+    var distance = dx*dx + dy*dy;
+
+    var r1s = r+ds1.radius*2;
+    r1s = r1s*r1s;
+    var r2s = r-ds1.radius;
+    r2s = r2s*r2s;
+    var isIn = false;
+    if(distance >= r2s && distance <= r1s){
+        isIn = true;
+    }
+
+    return {in: isIn, angle: radian * H_DIV_PI};
+
+    // var cx = Math.cos(radian) * r + center.x;
+    // var cy = Math.sin(radian) * r + center.y;
+    // r = ds1.radius * (1 + ds1.extendRadiusPercent);
+    // var p1 = {x: cx - r, y: cy - r};
+    // var p2 = {x: cx + r, y: cy - r};
+    // var p3 = {x: cx + r, y: cy + r};
+    // var p4 = {x: cx - r, y: cy + r};
+    // return {in: pointInTheRegion(point, p1, p2, p3, p4), angle: radian * H_DIV_PI}
+}
+
+function pointInTheRegion(p, p1, p2, p3, p4) {
+    if (p.x > p1.x && p.x > p2.x && p.x > p3.x && p.x > p4.x) {
+        return false;
+    }
+    if (p.x < p1.x && p.x < p2.x && p.x < p3.x && p.x < p4.x) {
+        return false;
+    }
+
+    if (p.y > p1.y && p.y > p2.y && p.y > p3.y && p.y > p4.y) {
+        return false;
+    }
+    if (p.y < p1.y && p.y < p2.y && p.y < p3.y && p.y < p4.y) {
+        return false;
+    }
+    return true;
+}
+
+function hsv2rgb(hue, saturation, value) {
+    var chroma = value * saturation;
+    var hue1 = hue / 60;
+    var x = chroma * (1 - Math.abs((hue1 % 2) - 1));
+    var r1, g1, b1;
+    if (hue1 >= 0 && hue1 <= 1) {
+        ([r1, g1, b1] = [chroma, x, 0]);
+    } else if (hue1 >= 1 && hue1 <= 2) {
+        ([r1, g1, b1] = [x, chroma, 0]);
+    } else if (hue1 >= 2 && hue1 <= 3) {
+        ([r1, g1, b1] = [0, chroma, x]);
+    } else if (hue1 >= 3 && hue1 <= 4) {
+        ([r1, g1, b1] = [0, x, chroma]);
+    } else if (hue1 >= 4 && hue1 <= 5) {
+        ([r1, g1, b1] = [x, 0, chroma]);
+    } else if (hue1 >= 5 && hue1 <= 6) {
+        ([r1, g1, b1] = [chroma, 0, x]);
+    }
+
+    var m = value - chroma;
+    var r = r1 + m;
+    var g = g1 + m;
+    var b = b1 + m;
+    // Change r,g,b values from [0,1] to [0,255]
+    var rgb = [Math.floor(255 * r), Math.floor(255 * g), Math.floor(255 * b)];
+    var hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
+
+    return {rgb: rgb, hex: hex};
+}
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function getSliderDataset(instance, type) {
+    return instance.selectComponent('#slider-' + type).getDataset();
+}
+
+function getCanvasDataset(instance) {
+    return instance.selectComponent(mainContainerId).getDataset();
+}
+
+function getRingPointerDataset(instance) {
+    return instance.selectComponent(ringPointerId).getDataset();
+}
+
+function moveView(event, instance) {
+    var c = instance.selectComponent('#' + event.currentTarget.id);
+    var touch = event.touches[0];
+    c.setStyle({
+        left: touch.clientX - 50 + 'px !important',
+        top: touch.clientY - 50 + 'px !important'
+    })
+}
+
+module.exports = {
+    moveView: moveView,
+    touchMoveSliderPointer: touchMoveSliderPointer,
+    touchSliderPointer: touchSliderPointer,
+    tapRingPointer: tapRingPointer,
+    touchMoveRingPointer: touchMoveRingPointer,
+    touchRingPointer: touchRingPointer,
+    propertyChangeWatcher: propertyChangeWatcher
+}

@@ -1,0 +1,15 @@
+{
+  "name": "color-picker-dialog",
+  "version": "1.0.0",
+  "description": "zasi color picker dialog",
+  "main": "colorPickerDialog.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "miniprogram",
+    "color-picker"
+  ],
+  "author": "老脸叔叔",
+  "license": "GPL-3.0"
+}

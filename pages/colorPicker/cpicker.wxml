@@ -1,0 +1,65 @@
+<view class="example-main">
+
+    <view class="margin"
+          style="border:solid 1px black;width:64px;height:64px;background-color:{{currentColor}};opacity:{{opacity}}"></view>
+
+    <view class="button">
+        <button style="width:100%" size="mini" ontap="showDialog">默认</button>
+    </view>
+
+    <view class="button">
+        <button style="width:100%" size="mini" ontap="showDialog"
+                data-show-opacity="{{true}}">带透明度选择器
+        </button>
+    </view>
+
+    <view class="button">
+        <button style="width:100%" size="mini" ontap="showDialog"
+                data-show-opacity="{{true}}"
+                data-pointer-class="custom-pointer-class">修改滑动指针样式
+        </button>
+    </view>
+
+    <view class="button">
+        <button style="width:100%" size="mini" ontap="showDialog"
+                data-pointer-image="../../../pages/common/pointer1.png"
+                data-pointer-image2="../../../pages/common/pointer2.png"
+                data-pointer-class="emptyPointerClass"
+                data-show-opacity="{{true}}">设置滑动块指针图片
+        </button>
+    </view>
+
+    <view class="button">
+        <button style="width:100%" size="mini" ontap="showDialog"
+                data-center-class="custom-center-class"
+        >修改中心颜色块样式
+        </button>
+    </view>
+
+    <view class="button">
+        <button style="width:100%" size="mini" ontap="showDialog"
+                data-center-class="custom-center-class"
+                data-confirm-image="../../../pages/common/images.png"
+        >修改中心颜色块图片
+        </button>
+    </view>
+
+
+    <color-picker-dialog id="defaultDialog"
+
+                         confirmImage="{{confirmImage}}"
+
+                         ringPointerImage="{{pointerImage2}}"
+                         vSliderPointerImage="{{pointerImage}}"
+                         sSliderPointerImage="{{pointerImage}}"
+                         tSliderPointerImage="{{pointerImage}}"
+
+                         ext-ring-pointer-class="{{pointerClass}}"
+                         ext-slider-pointer-class="{{pointerClass}}"
+                         ext-center-color-class="{{centerClass}}"
+
+                         oncolorConfirm="confirmColor"
+                         oncolorChange="colorChange"
+                         showOpacity="{{showOpacity}}"
+                         showDialog="{{show}}"></color-picker-dialog>
+</view>
