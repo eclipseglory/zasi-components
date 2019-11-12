@@ -5,9 +5,6 @@ Component({
         'ext-center-color-class',
         'ext-slider-pointer-class'
     ],
-    data: {
-        list: []
-    },
 
     properties: {
         animationDuration: {

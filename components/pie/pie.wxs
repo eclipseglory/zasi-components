@@ -1,0 +1,148 @@
+var PFS = 1000 / 60;
+
+function getRoot(instance) {
+    return instance.selectComponent('#root');
+}
+
+
+function getPieBackground(instance) {
+    return instance.selectComponent('#pie-back-ground');
+}
+
+function getPie1(instance) {
+    return instance.selectComponent('#pie1');
+}
+
+function getPie2(instance) {
+    return instance.selectComponent('#pie2');
+}
+
+function initAngle(angle) {
+    if (angle == null) return null;
+    if (angle > 360) {
+        angle = angle % 360;
+    } else if (angle < 0) {
+        var t = angle % 360;
+        angle = t + 360;
+    }
+    return angle;
+}
+
+function setPieAngle(angle, instance, rAF) {
+    if (rAF) {
+        instance.requestAnimationFrame(function () {
+            _setPieAngle(angle, instance);
+        });
+    } else {
+        _setPieAngle(angle, instance);
+    }
+}
+
+function _setPieAngle(angle, instance) {
+    var root = getRoot(instance);
+    var dsr = root.getDataset();
+    var pieBack = getPieBackground(instance);
+    var pie1 = getPie1(instance);
+    var pie2 = getPie2(instance);
+    var backColor = dsr.backgroundColor;
+    var pieColor = dsr.pieColor;
+    var radius = dsr.radius;
+    if (angle >= 0 && angle <= 180) {
+
+        pieBack.setStyle({
+            'background-color': pieColor + ' !important',
+            'width': (radius * 2 - 2) + 'px',
+            'height': (radius * 2 - 2) + 'px'
+        });
+
+        pie1.setStyle({
+            'background-image': 'linear-gradient(' + backColor + ' 50%,transparent 50%) !important;',
+            'width': (radius * 2) + 'px',
+            'height': (radius * 2) + 'px'
+        });
+
+        pie2.setStyle({
+            'background-image': 'linear-gradient(' + angle + 'deg,' + backColor + ' 50%,transparent 50%) !important;',
+            'width': (radius * 2) + 'px',
+            'height': (radius * 2) + 'px'
+        })
+        // pieBack.setStyle({
+        //     'background-image': 'linear-gradient(' + backColor + ' 50%,transparent 50%) !important;'
+        // })
+    } else if (angle > 180 && angle <= 360) {
+        pieBack.setStyle({
+            'background-color': backColor + ' !important',
+            'width': (radius * 2) + 'px',
+            'height': (radius * 2) + 'px'
+        });
+
+        pie1.setStyle({
+            'background-image': 'linear-gradient( transparent 50%,' + pieColor + ' 50%) !important;',
+            'width': (radius * 2 - 2) + 'px',
+            'height': (radius * 2 - 2) + 'px'
+        });
+
+        pie2.setStyle({
+            'background-image': 'linear-gradient(' + angle + 'deg,  transparent  50%,' + pieColor + ' 50%) !important;',
+            'width': (radius * 2 - 2) + 'px',
+            'height': (radius * 2 - 2) + 'px'
+        })
+    }
+
+}
+
+
+function angleChanged(newValue, oldValue, ownerInstance, instance) {
+    var lock = ownerInstance.getState().lock;
+    if (lock == null) {
+        lock = false;
+        ownerInstance.getState().lock = lock;
+    }
+    if (lock) return;
+    newValue = initAngle(newValue);
+    oldValue = initAngle(oldValue);
+    if (oldValue == null) oldValue = 0;
+    if (newValue != null && newValue != oldValue) {
+        var angle = newValue;
+        var dsr = getRoot(ownerInstance).getDataset();
+        if (dsr.animation) {
+            var totalDelta = angle - oldValue;
+            if (totalDelta == 0) {
+                setPieAngle(angle, ownerInstance, true);
+            } else {
+                var tc = Math.floor(dsr.animationDuration / PFS);
+                var delta = totalDelta / tc;
+                var c = 0;
+                var current = oldValue;
+                ownerInstance.getState().lock = true;
+
+                function animation() {
+                    setPieAngle(current, ownerInstance, false);
+                    current += delta;
+                    c++;
+                    if (c >= tc) {
+                        setPieAngle(angle, ownerInstance, false);
+                        ownerInstance.getState().lock = false;
+                        return;
+                    } else {
+
+                    }
+
+                    ownerInstance.requestAnimationFrame(function () {
+                        animation();
+                    })
+                }
+
+                animation();
+            }
+
+
+        } else {
+            setPieAngle(angle, ownerInstance, true);
+        }
+    }
+}
+
+module.exports = {
+    angleChanged: angleChanged
+}

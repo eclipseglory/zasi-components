@@ -1,0 +1,5 @@
+<view class="full-fill" style="height:100vh">
+    <pie width="50%" height="50%" angle = "{{angle}}">
+    </pie>
+    <button ontap="changeAngle">test</button>
+</view>

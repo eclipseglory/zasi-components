@@ -1,3 +1,4 @@
 <view class="example-main">
     <navigator url="../colorPicker/cpicker">颜色选择器</navigator>
+    <navigator url="../pie/p">扇形</navigator>
 </view>

@@ -134,10 +134,6 @@ Component({
     lifetimes: {
         // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
         attached: function () {
-            const version = 'v1.share';
-            const style = "color:red;background-color:yellow";
-            console.log("%c \u262F Zasi ColorPicker (version "+version+") \u262F - Developer 老脸叔叔(Old Face Uncle) 947734830@qq.com or deaocy@yeah.net ",style);
-
             let that = this;
             wx.getStorage({
                 key: '_zasi_recent_c0lors',

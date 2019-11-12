@@ -1,0 +1,12 @@
+@import "../common/common.wxss";
+
+.flex {
+  display: flex !important;
+  justify-content: center;
+  align-items: center
+}
+
+.pie {
+  position: absolute !important;
+}
+
