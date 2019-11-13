@@ -1,4 +1,4 @@
-<view class="page" style="height:100vh;box-sizing: border-box">
+<view class="page" style="box-sizing: border-box">
     <wxs module="wxs">
         var fixAngle = function(angle) {
         return Math.floor(angle);
@@ -9,7 +9,9 @@
     <view class="description">
         注意:由于某些技术原因，无法使用透明背景，否则会出现显示上的bug;此外，也是因为某些技术原因，角度在超过180后，扇形的半径会变大2px
     </view>
-
+    <view style="position:fixed;top:20px;right:10px; box-shadow: 3px 3px 3px darkgray; z-index:999">
+        <button ontap="changeAngle">随机角度： {{wxs.fixAngle(angle)}}</button>
+    </view>
     <view class="flex" style="width:100%">
         <view class="flex" style="flex-direction: column;width:100%">
             <view>静态扇形</view>
@@ -21,7 +23,7 @@
             <pie class="flex" angle="{{angle}}" style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw"></pie>
         </view>
     </view>
-    <button ontap="changeAngle">随机角度： {{wxs.fixAngle(angle)}}</button>
+
     <view class="sperator">
     </view>
     <view class="flex" style="width:100%">
@@ -33,13 +35,60 @@
              style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw"></pie>
         <button ontap="changeColor">随机颜色</button>
     </view>
-    <view style="height:100vh">
+    <view class="sperator">
+    </view>
+
+    <view class="flex" style="width:100%">
+        <pie class="flex"
+             angle="{{angle}}"
+             animation="{{true}}"
+             ringWidthPercent="{{ringWidthPercent}}"
+             style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw">
+            <view style="display:flex;justify-content: center;align-items: center">
+                slot:{{wxs.fixAngle(ringWidthPercent*100)}}%
+            </view>
+        </pie>
+        <view class="flex-column" style="width:50%;">
+            <view>更改环宽度比例</view>
+            <slider style="width:100%" max="1" step="0.05" bindchanging="ringWidthPercentChanging"
+                    show-value="{{true}}"/>
+        </view>
+    </view>
+
+    <view class="sperator">
+    </view>
+    <view class="flex" style="width:100%">
+        <pie class="flex"
+             rotate="{{rotateAngle}}"
+             angle="{{angle}}"
+             animation="{{true}}"
+             ringWidthPercent="{{0.3}}"
+             style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw">
+            <view style="display:flex;justify-content: center;align-items: center">可旋转</view>
+        </pie>
+        <button ontap="rotateIt">{{startRotate?'暂停':'开始'}}</button>
+    </view>
+    <view class="sperator">
+    </view>
+    <!-- 如果动态增加pie节点，不知道什么原因无法监听Intersection,所以无法展示，这是一个已知bug -->
+    <view>进入可视区域后动画才开始</view>
+    <view style="display:flex;width:100%;flex-wrap:nowrap;align-content: flex-start">
+        <pie angle="{{pdatas[0].value}}" animation="{{true}}" pieColor="{{pdatas[0].color}}"
+             style="padding:15rpx;width:25%;height:25vw"></pie>
+        <pie angle="{{pdatas[1].value}}" animation="{{true}}" pieColor="{{pdatas[1].color}}"
+             style="padding:15rpx;width:25%;height:25vw"></pie>
+        <pie angle="{{pdatas[2].value}}" animation="{{true}}" pieColor="{{pdatas[2].color}}"
+             style="padding:15rpx;width:25%;height:25vw"></pie>
+        <pie angle="{{pdatas[3].value}}" animation="{{true}}" pieColor="{{pdatas[3].color}}"
+             style="padding:15rpx;width:25%;height:25vw"></pie>
 
     </view>
-    <view style="display:flex;width:100%">
-        <!--        <pie  angle = "80" animation="{{false}}" style="padding:15rpx;width:25%;height:25vw"></pie>-->
-        <!--        <pie  angle = "{{angle}}" animation="{{true}}" style="width:25%;height:25vw"></pie>-->
-        <!--        <pie  angle = "290" animation="{{false}}" style="width:25%;height:25vw"></pie>-->
-        <!--        <pie  angle = "10" animation="{{false}}" style="width:25%;height:25vw"></pie>-->
-    </view>
+
+    <!--    <view style="height:500px;width:100%">-->
+    <!--        <view class="description">-->
+    <!--            已知bug:不知道为何，无法监听动态增加的节点进入可见区域(Intersection)，动画应该在进入可见区域后才开始,-->
+    <!--            但由于无法监听，导致动态增加的节点不会显示-->
+    <!--        </view>-->
+    <!--    </view>-->
+
 </view>

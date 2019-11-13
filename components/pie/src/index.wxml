@@ -10,12 +10,18 @@
     <wxs module="wxs" src="./index.wxs"></wxs>
     <view style="width:0;height:0" change:prop="{{wxs.colorChanged}}" prop="{{backgroundColor}}"></view>
     <view style="width:0;height:0" change:prop="{{wxs.colorChanged}}" prop="{{pieColor}}"></view>
-    <view id="pie-back-ground"
-          prop="{{ready}}"
-          change:prop="{{wxs.readyChanged}}"
-          class="round"
-          style="position:relative !important;width:{{pieRadius*2-2}}px;height:{{pieRadius*2-2}}px;">
+
+    <view class="flex" style="width:100%;height:100%;position:relative;transform: rotate({{rotate}}deg)">
+        <view id="pie-back-ground"
+              prop="{{ready}}"
+              change:prop="{{wxs.readyChanged}}"
+              class="round"
+              style="width:{{pieRadius*2-2}}px;height:{{pieRadius*2-2}}px;">
+        </view>
+        <view id='pie1' class="pie round" style="width:{{pieRadius*2}}px;height:{{pieRadius*2}}px"></view>
+        <view id='pie2' class="pie round" style="width:{{pieRadius*2}}px;height:{{pieRadius*2}}px"></view>
     </view>
-    <view id='pie1' class="pie round" style="width:{{pieRadius*2}}px;height:{{pieRadius*2}}px"></view>
-    <view id='pie2' class="pie round" style="width:{{pieRadius*2}}px;height:{{pieRadius*2}}px"></view>
+    <view id="centerCircle" class="pie round flex" style="justify-content:center;width:{{centerRadius*2}}px;height:{{centerRadius*2}}px;background-color:{{backgroundColor}}">
+        <slot wx:if="{{centerRadius != 0}}"></slot>
+    </view>
 </view>

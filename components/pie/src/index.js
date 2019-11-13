@@ -1,6 +1,9 @@
 Component({
     properties: {
-
+        ringWidthPercent: {
+            value: 0,
+            type: Number
+        },
         relatedTo: {
             value: null,
             type: String
@@ -39,10 +42,16 @@ Component({
         backgroundColor: {
             value: '#ffffff',
             type: String
+        },
+
+        rotate: {
+            value: 0,
+            type: Number
         }
     },
 
     data: {
+        centerRadius: 0,
         pieRadius: 0,
         ready: false,
     },
@@ -50,6 +59,19 @@ Component({
     methods: {},
 
     observer: null,
+
+    observers: {
+        'ringWidthPercent': function (ringWidthPercent) {
+            let radius = this.data.pieRadius;
+            if (radius == null) return;
+            let that = this;
+            let centerRadius = radius * (1 - ringWidthPercent);
+            if (ringWidthPercent <= 0) centerRadius = 0;
+            that.setData({
+                centerRadius: centerRadius
+            })
+        }
+    },
 
     detached: function () {
         if (this.observer != null) {
@@ -81,7 +103,10 @@ Component({
                 let h = res[0].height;
                 w = Math.min(w, h);
                 let radius = Math.floor(w / 2);
+                let centerRadius = radius * (1 - that.properties.ringWidthPercent);
+                if (that.properties.ringWidthPercent <= 0) centerRadius = 0;
                 that.setData({
+                    centerRadius: centerRadius,
                     pieRadius: radius
                 })
             }
