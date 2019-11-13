@@ -18,7 +18,7 @@ function getPie2(instance) {
 }
 
 function initAngle(angle) {
-    if (angle == null) return null;
+    if (angle == null) return 0;
     if (angle > 360) {
         angle = angle % 360;
     } else if (angle < 0) {
@@ -51,46 +51,83 @@ function _setPieAngle(angle, instance) {
 
         pieBack.setStyle({
             'background-color': pieColor + ' !important',
-            'width': (radius * 2 - 2) + 'px',
-            'height': (radius * 2 - 2) + 'px'
         });
 
         pie1.setStyle({
             'background-image': 'linear-gradient(' + backColor + ' 50%,transparent 50%) !important;',
-            'width': (radius * 2) + 'px',
-            'height': (radius * 2) + 'px'
         });
 
         pie2.setStyle({
             'background-image': 'linear-gradient(' + angle + 'deg,' + backColor + ' 50%,transparent 50%) !important;',
-            'width': (radius * 2) + 'px',
-            'height': (radius * 2) + 'px'
         })
-        // pieBack.setStyle({
-        //     'background-image': 'linear-gradient(' + backColor + ' 50%,transparent 50%) !important;'
-        // })
+
+
     } else if (angle > 180 && angle <= 360) {
         pieBack.setStyle({
             'background-color': backColor + ' !important',
-            'width': (radius * 2) + 'px',
-            'height': (radius * 2) + 'px'
         });
 
         pie1.setStyle({
             'background-image': 'linear-gradient( transparent 50%,' + pieColor + ' 50%) !important;',
-            'width': (radius * 2 - 2) + 'px',
-            'height': (radius * 2 - 2) + 'px'
         });
 
         pie2.setStyle({
             'background-image': 'linear-gradient(' + angle + 'deg,  transparent  50%,' + pieColor + ' 50%) !important;',
-            'width': (radius * 2 - 2) + 'px',
-            'height': (radius * 2 - 2) + 'px'
         })
     }
 
 }
 
+/**
+ * @deprecated 暂时不用
+ * @param newValue
+ * @param oldValue
+ * @param ownerInstance
+ * @param instance
+ */
+function radiusChanged(newValue, oldValue, ownerInstance, instance) {
+    // if (newValue != null && newValue != oldValue) {
+    //     var angle = ownerInstance.getState().lastAngle;
+    //     setPieAngle(angle, ownerInstance);
+    // }
+}
+
+
+function runAnimation(startAngle, endAngle, ownerInstance) {
+    if (ownerInstance.getState().lock) return;
+
+    var dsr = getRoot(ownerInstance).getDataset();
+    var totalDelta = endAngle - startAngle;
+    if (totalDelta == 0) {
+        ownerInstance.getState().lastAngle = endAngle;
+        setPieAngle(endAngle, ownerInstance, true);
+    } else {
+        var tc = Math.floor(dsr.animationDuration / PFS);
+        var delta = totalDelta / tc;
+        var c = 0;
+        var current = startAngle;
+        ownerInstance.getState().lock = true; //动画期间锁住所有
+
+        function animation() {
+            setPieAngle(current, ownerInstance, false);
+            current += delta;
+            c++;
+            if (c >= tc) {
+                setPieAngle(endAngle, ownerInstance, false);
+                ownerInstance.getState().lock = false;
+                ownerInstance.getState().lastAngle = endAngle;
+                return;
+            } else {
+
+            }
+            ownerInstance.requestAnimationFrame(function () {
+                animation();
+            })
+        }
+
+        animation();
+    }
+}
 
 function angleChanged(newValue, oldValue, ownerInstance, instance) {
     var lock = ownerInstance.getState().lock;
@@ -99,50 +136,53 @@ function angleChanged(newValue, oldValue, ownerInstance, instance) {
         ownerInstance.getState().lock = lock;
     }
     if (lock) return;
+    oldValue = ownerInstance.getState().lastAngle;
     newValue = initAngle(newValue);
     oldValue = initAngle(oldValue);
-    if (oldValue == null) oldValue = 0;
     if (newValue != null && newValue != oldValue) {
+
         var angle = newValue;
         var dsr = getRoot(ownerInstance).getDataset();
+
         if (dsr.animation) {
-            var totalDelta = angle - oldValue;
-            if (totalDelta == 0) {
-                setPieAngle(angle, ownerInstance, true);
-            } else {
-                var tc = Math.floor(dsr.animationDuration / PFS);
-                var delta = totalDelta / tc;
-                var c = 0;
-                var current = oldValue;
-                ownerInstance.getState().lock = true;
-
-                function animation() {
-                    setPieAngle(current, ownerInstance, false);
-                    current += delta;
-                    c++;
-                    if (c >= tc) {
-                        setPieAngle(angle, ownerInstance, false);
-                        ownerInstance.getState().lock = false;
-                        return;
-                    } else {
-
-                    }
-
-                    ownerInstance.requestAnimationFrame(function () {
-                        animation();
-                    })
-                }
-
-                animation();
+            if (!dsr.ready) {
+                //不在可视范围内，不进行动画,记录数据直到进入可视范围会通知另外一个方法
+                ownerInstance.getState().settingAngle = newValue;
+                if (ownerInstance.getState().lastAngle == null) //只记录从来没有设置过lastAngle的情况
+                    ownerInstance.getState().lastAngle = oldValue;
+                return;
             }
-
-
+            runAnimation(oldValue, angle, ownerInstance);
         } else {
+            ownerInstance.getState().lastAngle = angle;
             setPieAngle(angle, ownerInstance, true);
         }
     }
 }
 
+function readyChanged(newValue, oldValue, ownerInstance, instance) {
+    if (newValue && newValue != oldValue) {
+        var startAngle = ownerInstance.getState().lastAngle;
+        var endAngle = ownerInstance.getState().settingAngle;
+        var dsr = getRoot(ownerInstance).getDataset();
+        if (endAngle != null && dsr.animation) {
+            if (startAngle != endAngle) {
+                runAnimation(startAngle, endAngle, ownerInstance);
+            }
+        }
+    }
+}
+
+function colorChanged(newValue, oldValue, ownerInstance, instance) {
+    if (newValue != oldValue) {
+        setPieAngle(ownerInstance.getState().lastAngle,ownerInstance,true)
+    }
+}
+
+
+
 module.exports = {
+    colorChanged:colorChanged,
+    readyChanged: readyChanged,
     angleChanged: angleChanged
 }

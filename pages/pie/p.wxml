@@ -1,5 +1,45 @@
-<view class="full-fill" style="height:100vh">
-    <pie width="50%" height="50%" angle = "{{angle}}">
-    </pie>
-    <button ontap="changeAngle">test</button>
+<view class="page" style="height:100vh;box-sizing: border-box">
+    <wxs module="wxs">
+        var fixAngle = function(angle) {
+        return Math.floor(angle);
+        }
+        module.exports.fixAngle = fixAngle;
+    </wxs>
+
+    <view class="description">
+        注意:由于某些技术原因，无法使用透明背景，否则会出现显示上的bug;此外，也是因为某些技术原因，角度在超过180后，扇形的半径会变大2px
+    </view>
+
+    <view class="flex" style="width:100%">
+        <view class="flex" style="flex-direction: column;width:100%">
+            <view>静态扇形</view>
+            <pie class="flex" angle="{{angle}}" animation="{{false}}"
+                 style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw"></pie>
+        </view>
+        <view class="flex" style="flex-direction: column;width:100%">
+            <view>动画扇形</view>
+            <pie class="flex" angle="{{angle}}" style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw"></pie>
+        </view>
+    </view>
+    <button ontap="changeAngle">随机角度： {{wxs.fixAngle(angle)}}</button>
+    <view class="sperator">
+    </view>
+    <view class="flex" style="width:100%">
+        <pie class="flex"
+             angle="{{angle}}"
+             animation="{{false}}"
+             backgroundColor="{{randomBack}}"
+             pieColor="{{randomPie}}"
+             style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw"></pie>
+        <button ontap="changeColor">随机颜色</button>
+    </view>
+    <view style="height:100vh">
+
+    </view>
+    <view style="display:flex;width:100%">
+        <!--        <pie  angle = "80" animation="{{false}}" style="padding:15rpx;width:25%;height:25vw"></pie>-->
+        <!--        <pie  angle = "{{angle}}" animation="{{true}}" style="width:25%;height:25vw"></pie>-->
+        <!--        <pie  angle = "290" animation="{{false}}" style="width:25%;height:25vw"></pie>-->
+        <!--        <pie  angle = "10" animation="{{false}}" style="width:25%;height:25vw"></pie>-->
+    </view>
 </view>

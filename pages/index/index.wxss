@@ -10,6 +10,10 @@
   background-color: lightgray;
 }
 
+.example-main navigator{
+  padding-top : 30rpx;
+}
+
 .button {
   width: 90%;
   margin-bottom: 2vw;

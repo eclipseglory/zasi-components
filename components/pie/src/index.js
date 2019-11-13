@@ -1,5 +1,11 @@
 Component({
     properties: {
+
+        relatedTo: {
+            value: null,
+            type: String
+        },
+
         animation: {
             value: true,
             type: Boolean
@@ -37,14 +43,36 @@ Component({
     },
 
     data: {
-        pieRadius: 0
+        pieRadius: 0,
+        ready: false,
     },
 
     methods: {},
 
+    observer: null,
+
+    detached: function () {
+        if (this.observer != null) {
+            this.observer.disconnect();
+        }
+    },
+
     attached: function () {
-        let query = wx.createSelectorQuery().in(this);
         let that = this;
+        this.observer = this.createIntersectionObserver();
+        if (this.properties.relatedTo != null) {
+            this.observer = this.observer.relatedTo(this.properties.relatedTo);
+        } else {
+            this.observer = this.observer.relativeToViewport();
+        }
+        this.observer.observe('#pie-back-ground', function (res) {
+            that.setData({
+                ready: res.intersectionRatio > 0
+            })
+        });
+
+        let query = wx.createSelectorQuery().in(this);
+
         query.select('#root').boundingClientRect().exec(function (res) {
             if (res[0] == null) {
                 console.warn('没找到根节点，可能尺寸大小为0')

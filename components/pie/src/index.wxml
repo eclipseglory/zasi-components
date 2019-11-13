@@ -1,15 +1,20 @@
-<view id="root" class="flex" style="position:relative;width:{{width}};height:{{height}}"
+<view id="root" class="flex" style="min-height:10px;min-width:10px;position:relative;width:100%;height:100%"
       data-background-color="{{backgroundColor}}"
       data-pie-color="{{pieColor}}"
       data-animation-duration="{{animationDuration}}"
       data-animation="{{animation}}"
       data-radius="{{pieRadius}}"
+      data-ready="{{ready}}"
       change:prop="{{wxs.angleChanged}}"
       prop="{{angle}}">
     <wxs module="wxs" src="./index.wxs"></wxs>
+    <view style="width:0;height:0" change:prop="{{wxs.colorChanged}}" prop="{{backgroundColor}}"></view>
+    <view style="width:0;height:0" change:prop="{{wxs.colorChanged}}" prop="{{pieColor}}"></view>
     <view id="pie-back-ground"
+          prop="{{ready}}"
+          change:prop="{{wxs.readyChanged}}"
           class="round"
-          style="position:relative !important;width:{{pieRadius*2}}px;height:{{pieRadius*2}}px;">
+          style="position:relative !important;width:{{pieRadius*2-2}}px;height:{{pieRadius*2-2}}px;">
     </view>
     <view id='pie1' class="pie round" style="width:{{pieRadius*2}}px;height:{{pieRadius*2}}px"></view>
     <view id='pie2' class="pie round" style="width:{{pieRadius*2}}px;height:{{pieRadius*2}}px"></view>
