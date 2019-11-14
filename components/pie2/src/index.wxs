@@ -9,13 +9,14 @@ function getPieBackground(instance) {
     return instance.selectComponent('#pie-back-ground');
 }
 
-function getPie1(instance) {
-    return instance.selectComponent('#pie1');
-}
-
-function getPie2(instance) {
-    return instance.selectComponent('#pie2');
-}
+//
+// function getPie1(instance) {
+//     return instance.selectComponent('#pie1');
+// }
+//
+// function getPie2(instance) {
+//     return instance.selectComponent('#pie2');
+// }
 
 function initAngle(angle) {
     if (angle == null) return 0;
@@ -29,6 +30,7 @@ function initAngle(angle) {
 }
 
 function setPieAngle(angle, instance, rAF) {
+    if(angle == null) return;
     if (rAF) {
         instance.requestAnimationFrame(function () {
             _setPieAngle(angle, instance);
@@ -42,39 +44,47 @@ function _setPieAngle(angle, instance) {
     var root = getRoot(instance);
     var dsr = root.getDataset();
     var pieBack = getPieBackground(instance);
-    var pie1 = getPie1(instance);
-    var pie2 = getPie2(instance);
+    // var pie1 = getPie1(instance);
+    // var pie2 = getPie2(instance);
     var backColor = dsr.backgroundColor;
     var pieColor = dsr.pieColor;
-    var radius = dsr.radius;
-    if (angle >= 0 && angle <= 180) {
-
-        pieBack.setStyle({
-            'background-color': pieColor + ' !important',
-        });
-
-        pie1.setStyle({
-            'background-image': 'linear-gradient(90deg,' + backColor + ' 50%,transparent 50%) !important;',
-        });
-        var pa = angle - 90;
-        pie2.setStyle({
-            'background-image': 'linear-gradient(' + pa + 'deg,' + backColor + ' 50%,transparent 50%) !important;',
-        })
-
-
-    } else if (angle > 180 && angle <= 360) {
-        pieBack.setStyle({
-            'background-color': backColor + ' !important',
-        });
-
-        pie1.setStyle({
-            'background-image': 'linear-gradient(90deg, transparent 50%,' + pieColor + ' 50%) !important;',
-        });
-        var pa = angle - 90;
-        pie2.setStyle({
-            'background-image': 'linear-gradient(' + pa + 'deg,  transparent  50%,' + pieColor + ' 50%) !important;',
-        })
+    var background = 'conic-gradient(' + pieColor + ' ' + angle + 'deg';
+    if (backColor == null || backColor.trim() == '' || backColor.trim() == 'null') {
+        backColor = 'transparent';
     }
+    background += ',' + backColor + ' ' + angle + 'deg 360deg';
+    background += ') !important';
+    pieBack.setStyle({
+        'background': background
+    });
+    // if (angle >= 0 && angle <= 180) {
+    //     //conic-gradient(red 6deg);
+    //     pieBack.setStyle({
+    //         'background': pieColor + ' !important',
+    //     });
+    //
+    //     pie1.setStyle({
+    //         'background-image': 'linear-gradient(90deg,' + backColor + ' 50%,transparent 50%) !important;',
+    //     });
+    //     var pa = angle - 90;
+    //     pie2.setStyle({
+    //         'background-image': 'linear-gradient(' + pa + 'deg,' + backColor + ' 50%,transparent 50%) !important;',
+    //     })
+    //
+    //
+    // } else if (angle > 180 && angle <= 360) {
+    //     pieBack.setStyle({
+    //         'background-color': backColor + ' !important',
+    //     });
+    //
+    //     pie1.setStyle({
+    //         'background-image': 'linear-gradient(90deg, transparent 50%,' + pieColor + ' 50%) !important;',
+    //     });
+    //     var pa = angle - 90;
+    //     pie2.setStyle({
+    //         'background-image': 'linear-gradient(' + pa + 'deg,  transparent  50%,' + pieColor + ' 50%) !important;',
+    //     })
+    // }
 
 }
 

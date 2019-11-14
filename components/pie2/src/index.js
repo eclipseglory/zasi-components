@@ -43,6 +43,10 @@ Component({
             value: '#ffffff',
             type: String
         },
+        ringBackgroundColor: {
+            value: 'transparent',
+            type: String
+        },
 
         rotate: {
             value: 0,

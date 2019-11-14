@@ -3,11 +3,15 @@
         var fixAngle = function(angle) {
         return Math.floor(angle);
         }
+        var cut = function(number){
+        return Math.ceil(number*100);
+        }
         module.exports.fixAngle = fixAngle;
+        module.exports.cut = cut;
     </wxs>
 
     <view class="description">
-        注意:由于某些技术原因，无法使用透明背景，否则会出现显示上的bug;此外，也是因为某些技术原因，角度在超过180后，扇形的半径会变大2px
+        和Pie一样的功能，使用conic-gradient实现，可以让扇形具有透明的背景色，需要浏览器支持该属性。<span style="font-weight:bold">注意</span>，如果是环，必须设置环背景色
     </view>
     <view style="position:fixed;top:20px;right:10px; box-shadow: 3px 3px 3px darkgray; z-index:999">
         <button ontap="changeAngle">随机角度： {{wxs.fixAngle(angle)}}</button>
@@ -43,6 +47,7 @@
              angle="{{angle}}"
              animation="{{true}}"
              ringWidthPercent="{{ringWidthPercent}}"
+             ringBackgroundColor="white"
              style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw">
             <view style="display:flex;justify-content: center;align-items: center">
                 slot:{{wxs.fixAngle(ringWidthPercent*100)}}%
@@ -63,6 +68,7 @@
              angle="{{angle}}"
              animation="{{true}}"
              ringWidthPercent="{{0.3}}"
+             ringBackgroundColor="white"
              style="box-sizing:border-box;padding:15rpx;width:50%;height:25vw">
             <view style="display:flex;justify-content: center;align-items: center">可旋转</view>
         </pie>
@@ -70,7 +76,7 @@
     </view>
     <view class="sperator">
     </view>
-    <view style="padding:30rpx">进入可视区域后动画才开始</view>
+    <view>进入可视区域后动画才开始</view>
     <view id="pieTable" style="display:flex;width:100%;flex-wrap:wrap;">
         <block wx:for="{{pdatas}}" wx:for-item="data" wx:key="index">
             <view style="width:25%;display:flex;justify-content:space-around;align-items:center;flex-direction:column;">
@@ -82,4 +88,46 @@
             </view>
         </block>
     </view>
+
+    <view class="sperator">
+    </view>
+
+    <view style="padding:30rpx">
+        Pie2能实现饼状图,环形图,Pie不行
+    </view>
+    <view class="flex" style="min-height:100rpx;width:100%;padding:30rpx;box-sizing:border-box;">
+        <view id="pieChart"
+              style="position:relative;width:50%;height:50vw;display:flex;justify-content:center;align-items:center;">
+            <block wx:for="{{chartDatas}}" wx:for-item="data" wx:key="index">
+                <pie angle="{{data.angle}}" animation="{{true}}" backgroundColor="{{null}}" ready="{{chartReady}}"
+                     pieColor="{{data.color}}" rotate="{{data.rotate}}"
+                     style="width:100%;height:100%;position:absolute;top:0"></pie>
+            </block>
+        </view>
+        <view class="flex-column" style="width:50%;padding:10rpx;font-size:0.75em">
+            <block wx:for="{{chartDatas}}" wx:for-item="data" wx:key="index">
+                <view class="flex" style="width:100%;justify-content: space-around">
+                    <view style="width:50px;height:20px;background-color: {{data.color}}"></view>
+                    <view>{{index}}类商品，总售量{{data.value}}万，占<span style="font-weight:bold;color:{{data.color}}">{{wxs.cut(data.percent)}}%</span>
+                    </view>
+                </view>
+
+            </block>
+        </view>
+
+
+        <view
+              style="position:relative;width:50%;height:50vw;display:flex;justify-content:center;align-items:center;">
+            <block wx:for="{{chartDatas}}" wx:for-item="data" wx:key="index">
+                <pie ringBackgroundColor="#ffffff"
+                     ringWidthPercent="0.3"
+                     angle="{{data.angle}}" animation="{{true}}" backgroundColor="{{null}}" ready="{{chartReady}}"
+                     pieColor="{{data.color}}" rotate="{{data.rotate}}"
+                     style="width:100%;height:100%;position:absolute;top:0">
+                    销售量
+                </pie>
+            </block>
+        </view>
+    </view>
+
 </view>

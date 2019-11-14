@@ -10,30 +10,61 @@ Page({
         startRotate: false,
         pdatas: [],
         tablePieReady: false,
+        chartReady: false,
+        chartDatas: []
     },
-    observer : null,
+
     onLoad() {
         let that = this;
-        this.observer = wx.createIntersectionObserver();
-        this.observer = this.observer.relativeToViewport();
-        this.observer.observe('#pieTable', function (res) {
+        this.tableObs = wx.createIntersectionObserver();
+        this.tableObs = this.tableObs.relativeToViewport();
+        this.tableObs.observe('#pieTable', function (res) {
             that.setData({
                 tablePieReady: res.intersectionRatio > 0
+            })
+        });
+
+        this.chartObs = wx.createIntersectionObserver();
+        this.chartObs = this.chartObs.relativeToViewport();
+        this.chartObs.observe('#pieChart', function (res) {
+            that.setData({
+                chartReady: res.intersectionRatio > 0
             })
         });
 
         for (let i = 0; i < 8; i++) {
             this.data.pdatas.push({value: Math.floor(Math.random() * 360), color: this.randomColor()});
         }
-        console.log(this.data.pdatas);
+
+        let totalValue = 0;
+        for (let i = 0; i < 5; i++) {
+            let value = Math.floor(Math.random() * 100);
+            totalValue += value;
+            this.data.chartDatas.push({value: value, color: this.randomColor()});
+        }
+        let cdatas = this.data.chartDatas;
+        let rotate = 0;
+        for (let i = 0; i < cdatas.length; i++) {
+            let d = cdatas[i];
+            d.percent = d.value / totalValue;
+            d.angle = d.percent * 360;
+            d.rotate = rotate;
+            rotate += d.angle;
+        }
+
+        console.log(cdatas);
+
         this.setData({
+            chartDatas:cdatas,
             pdatas: this.data.pdatas
         })
     },
 
     onUnload() {
-        if (this.observer)
-            this.observer.disconnect();
+        if (this.tableObs)
+            this.tableObs.disconnect();
+        if (this.chartObs)
+            this.chartObs.disconnect();
     },
 
     rotateIt(e) {
