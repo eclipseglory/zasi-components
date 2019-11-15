@@ -1,0 +1,16 @@
+<cover-view id="root"
+            class="root shadow ext-class"
+            prop="{{show}}"
+            change:prop="{{wxs.showChange}}"
+            data-forward="{{forward}}"
+            data-type="{{type}}"
+            data-bottom="{{bottom}}"
+            data-left="{{left}}"
+            data-target-height="{{targetHeight}}"
+            data-total-height="{{totalHeight}}"
+            data-height="{{height}}"
+            data-animation-duration="{{animationDuration}}"
+            style="bottom:{{bottom}}px !important;left:{{left}}px !important;z-index:{{zIndex}}">
+    <wxs module="wxs" src="./index.wxs"></wxs>
+    {{text}}
+</cover-view>

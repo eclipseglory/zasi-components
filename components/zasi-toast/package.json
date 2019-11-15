@@ -1,10 +1,13 @@
 {
-  "name": "zasi-pie2",
+  "name": "zasi-toast",
   "version": "1.0.0",
-  "description": "miniprogram pie component v2",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "zasi-common": "latest"
   },
   "miniprogram": "src",
   "author": "老脸叔叔",

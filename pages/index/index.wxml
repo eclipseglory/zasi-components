@@ -2,4 +2,5 @@
     <navigator url="../colorPicker/cpicker">颜色选择器</navigator>
     <navigator url="../pie/p">扇形</navigator>
     <navigator url="../pie2/p">扇形2</navigator>
+    <navigator url="../toast/toast">弹出消息</navigator>
 </view>

@@ -95,7 +95,7 @@ Component({
         // } else {
         //     this.tableObs = this.tableObs.relativeToViewport();
         // }
-        // this.tableObs.observe('#pie-back-ground', function (res) {
+        // this.tableObs.observe('#zasi-pie-back-ground', function (res) {
         //     that.setData({
         //         ready: res.intersectionRatio > 0
         //     })

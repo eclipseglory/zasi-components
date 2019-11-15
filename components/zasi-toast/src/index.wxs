@@ -1,0 +1,127 @@
+var PFS = 1000 / 60;
+var normal = 'normalBack';
+var confirm = 'confirmBack';
+var error = 'errorBack';
+
+function eventHandle(event, instance) {
+}
+
+function getToast(instance) {
+    return instance.selectComponent('#root')
+}
+
+function showToast(instance, show) {
+    if (instance.getState().lock) return;
+    instance.getState().last = show;
+    var toast = getToast(instance);
+    var ds = toast.getDataset();
+    var totalHeight = ds.totalHeight;
+    var height = ds.height;
+    var totalTime = ds.animationDuration;
+    var targetHeightPercent = ds.targetHeight;
+
+    var type = ds.type;
+    var forward = ds.forward;
+    var total = Math.floor(totalTime / PFS);
+    var delta = 0;
+    var extendHeight = height;
+
+    var targetHeight = totalHeight * targetHeightPercent;
+    var currentHeight = -height;
+
+    if (forward == 'top') {
+        extendHeight *= -1;
+        targetHeight = totalHeight * (1 - targetHeightPercent);
+        currentHeight = height + totalHeight;
+    }
+    targetHeight += extendHeight;
+    if (!show) {
+        var temp = currentHeight;
+        currentHeight = targetHeight - extendHeight;
+        targetHeight = temp;
+    }
+    delta = (targetHeight - currentHeight) / total;
+
+
+    var lastStep = false;
+    var c = 0;
+
+
+    if (type == null || type == '') {
+    } else {
+        if (toast.hasClass(normal)) {
+            toast.removeClass(normal);
+        }
+        if (toast.hasClass(confirm)) {
+            toast.removeClass(confirm);
+        }
+        if (toast.hasClass(error)) {
+            toast.removeClass(error);
+        }
+        if (type == 'normal') {
+            toast.addClass(normal);
+        }
+        if (type == 'confirm') {
+            toast.addClass(confirm);
+        }
+        if (type == 'error') {
+            toast.addClass(error);
+        }
+    }
+
+    function animation1() {
+        //匀速
+        currentHeight += delta;
+        c++;
+        if (c >= total) {
+            toast.setStyle({
+                bottom: (targetHeight) + 'px !important',
+            });
+            if (!lastStep && show) {
+                animation2();
+                return;
+
+            }
+            if (show && lastStep) {
+                instance.callMethod('showing');
+            }
+            instance.getState().lock = false;
+            return;
+        }
+        toast.setStyle({
+            bottom: currentHeight + 'px !important',
+        });
+        instance.requestAnimationFrame(animation1)
+    }
+
+    function animation2() {
+        lastStep = true;
+        currentHeight = targetHeight;
+        targetHeight -= extendHeight;
+        c = 0;
+        total = Math.floor(60 / PFS);
+        delta = (targetHeight - currentHeight) / total;
+        animation1();
+    }
+
+    instance.getState().lock = true;
+    animation1();
+
+}
+
+function showChange(newValue, oldValue, ownerInstance, instance) {
+    var last = ownerInstance.getState().last;
+    if (last == null) {
+        ownerInstance.getState().last = false;
+        last = false;
+    }
+    if (newValue != last) {
+        showToast(ownerInstance, newValue);
+    }
+}
+
+
+module.exports = {
+    showChange: showChange,
+    eventHandle: eventHandle
+}

@@ -1,0 +1,30 @@
+@import "../../common/src/common.wxss";
+
+.root {
+  position: fixed !important;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 5px 1em 5px 1em;
+}
+
+.normalBack{
+  background: #232526;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: whitesmoke;
+}
+
+.errorBack{
+  background: #F00000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #DC281E, #F00000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #DC281E, #F00000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: whitesmoke;
+}
+
+.confirmBack{
+  background: #56ab2f;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: whitesmoke;
+}
+

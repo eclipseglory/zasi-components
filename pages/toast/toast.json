@@ -1,0 +1,6 @@
+{
+  "usingComponents" : {
+    "zasi-toast" : "../../components/toast/src/index",
+    "zasi-mask" : "../../components/mask/src/index"
+  }
+}
