@@ -1,4 +1,4 @@
-@import "../../common/src/common.wxss";
+@import "../../zasi-common/src/common.wxss";
 
 .root {
   position: fixed !important;
