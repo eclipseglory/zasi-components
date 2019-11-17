@@ -1,0 +1,6 @@
+@import "../common/common.wxss";
+
+.description-class {
+  font-size: 0.75em;
+  color: grey;
+}

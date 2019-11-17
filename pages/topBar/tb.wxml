@@ -1,0 +1,9 @@
+<view>
+    <top-bar>
+        测试
+    </top-bar>
+    <view style="width:100%;height:120vh">
+        往下拉
+    </view>
+    <button>修改颜色</button>
+</view>

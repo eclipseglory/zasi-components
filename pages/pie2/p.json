@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "pie" : "../../components/pie2/src/index"
+    "pie" : "../../components/src/pie2/pie2"
   }
 }

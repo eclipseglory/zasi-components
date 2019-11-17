@@ -1,6 +1,6 @@
 <cover-view id="root"
             class="root shadow ext-class"
-            prop="{{show}}"
+            prop="{{showMe}}"
             change:prop="{{wxs.showChange}}"
             data-forward="{{forward}}"
             data-type="{{type}}"
@@ -11,6 +11,6 @@
             data-height="{{height}}"
             data-animation-duration="{{animationDuration}}"
             style="bottom:{{bottom}}px !important;left:{{left}}px !important;z-index:{{zIndex}}">
-    <wxs module="wxs" src="./index.wxs"></wxs>
+    <wxs module="wxs" src="./toast.wxs"></wxs>
     {{text}}
 </cover-view>

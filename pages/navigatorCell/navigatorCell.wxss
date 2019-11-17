@@ -1,0 +1,12 @@
+.extClass{
+  background-color:yellowgreen;
+}
+
+.ext-title-class{
+  color:red
+}
+
+.ext-description-class{
+  color:blue; /*没设置优先级将不会被应用*/
+  font-size : 1em !important;
+}

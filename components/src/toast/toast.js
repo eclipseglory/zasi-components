@@ -3,6 +3,10 @@ Component({
     externalClasses: ['ext-class'],
 
     properties: {
+        showMe: {
+            value: false,
+            type: Boolean
+        },
         forward: {
             value: 'bottom',
             type: String
@@ -37,8 +41,12 @@ Component({
         }
     },
 
+    options: {
+        pureDataPattern: /^_/ // 指定所有 _ 开头的数据字段为纯数据字段
+    },
+
     data: {
-        bottom: -9999,
+        bottom: -99999,
         totalHeight: 0
     },
 
@@ -57,8 +65,37 @@ Component({
     },
 
     observers: {
+        'show': function (show) {
+            if (this.properties.text != this.data.lastText) {
+                this.data.lastText = this.properties.text;
+                let that = this;
+                let q = wx.createSelectorQuery().in(this);
+                q.select('#root').boundingClientRect(function (res) {
+                    let r = res;
+                    if (r == null) {
+                        console.warn('toast大小为0');
+                    } else {
+                        let width = r.width;
+                        let height = r.height;
+                        let info = wx.getSystemInfoSync();
+                        let ww = info.windowWidth;
+                        that.setData({
+                            left: (ww - width) / 2,
+                            bottom: -height,
+                            totalHeight: info.windowHeight,
+                            height: height,
+                            showMe: show
+                        })
+                    }
+                }).exec();
+            } else {
+                this.setData({
+                    showMe: show
+                })
+            }
+        },
         'type': function (type) {
-            if (type == 'error' || type == 'confirm') {
+            if (type == 'error' || type == 'success') {
                 this.setData({
                     forward: 'top'
                 })
@@ -71,25 +108,6 @@ Component({
     },
 
     attached: function () {
-        let q = wx.createSelectorQuery().in(this);
-        let that = this;
-        q.select('#root').boundingClientRect(function (res) {
-            let r = res;
-            if (r == null) {
-                console.warn('toast大小为0');
-            } else {
-                let width = r.width;
-                let height = r.height;
-                let info = wx.getSystemInfoSync();
-                let ww = info.windowWidth;
-                that.setData({
-                    left: (ww - width) / 2,
-                    bottom: -height,
-                    totalHeight: info.windowHeight,
-                    height: height
-                })
-            }
-        }).exec();
     },
 
     ready() {

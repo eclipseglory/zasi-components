@@ -1,0 +1,9 @@
+<navigator class="cell-row ext-row-class" url="{{url}}" style="padding:{{padding}};">
+    <view class="flex-row">
+        <block wx:if="{{imageUrl}}">
+            <image style="width:{{imageSize}};height:{{imageSize}};margin-right:5px" src="{{imageUrl}}"></image>
+        </block>
+        <text class="ext-title-class">{{title}}</text>
+    </view>
+    <text class="flex-row description-class ext-description-class">{{description}}</text>
+</navigator>

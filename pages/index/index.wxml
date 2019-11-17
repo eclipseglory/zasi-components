@@ -3,4 +3,6 @@
     <navigator url="../pie/p">扇形</navigator>
     <navigator url="../pie2/p">扇形2</navigator>
     <navigator url="../toast/toast">弹出消息</navigator>
+    <navigator url="../topBar/tb">Top Bar</navigator>
+    <navigator url="../navigatorCell/navigatorCell">Navigator设置行</navigator>
 </view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents" : {
+    "n-cell" : "../components/src/navigatorCell/navigatorCell"
+  }
+}

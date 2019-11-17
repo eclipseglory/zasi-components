@@ -1,0 +1,11 @@
+<view style="width:100%">
+    <block wx:for="{{cells}}" wx:for-item="cell">
+        <n-cell title="{{cell.title}}"
+                description="{{cell.des}}"
+                url="cell.url"
+                imageUrl="{{cell.imageUrl}}"
+                ext-row-class="{{cell.extClass}}"
+                ext-title-class="{{cell.extTitleClass}}"
+                ext-description-class="{{cell.extDesClass}}"></n-cell>
+    </block>
+</view>

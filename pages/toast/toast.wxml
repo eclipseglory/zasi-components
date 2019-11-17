@@ -1,7 +1,6 @@
-<view>
+<view style="box-sizing: border-box;">
     <button data-type = "normal" bindtap="show">普通</button>
     <button data-type="error" bindtap="show">错误</button>
-    <button data-type="confirm" bindtap="show">确认</button>
-    <zasi-toast text="test" type="{{type}}" show="{{showToast}}"></zasi-toast>
-    <view style="height:100vh"></view>
+    <button data-type="success" bindtap="show">成功</button>
+    <zasi-toast text="{{text}}" type="{{type}}" show="{{showToast}}"></zasi-toast>
 </view>

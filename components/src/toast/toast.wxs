@@ -19,7 +19,6 @@ function showToast(instance, show) {
     var height = ds.height;
     var totalTime = ds.animationDuration;
     var targetHeightPercent = ds.targetHeight;
-
     var type = ds.type;
     var forward = ds.forward;
     var total = Math.floor(totalTime / PFS);
@@ -61,7 +60,7 @@ function showToast(instance, show) {
         if (type == 'normal') {
             toast.addClass(normal);
         }
-        if (type == 'confirm') {
+        if (type == 'success') {
             toast.addClass(confirm);
         }
         if (type == 'error') {

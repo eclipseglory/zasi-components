@@ -1,0 +1,8 @@
+<view>
+    <view class="ext-class bottom-bar" style="min-height:75rpx;height:{{height}};position:relative;background-color:transparent">
+    </view>
+    <view id="container" class="ext-class bottom-bar"
+          style="z-index:{{zIndex}};min-height:75rpx;background-color:{{backgroundColor}};border-top:{{border}}">
+        <slot></slot>
+    </view>
+</view>
