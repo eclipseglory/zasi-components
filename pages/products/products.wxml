@@ -1,0 +1,64 @@
+<view class="flex-row" style="background-color:whitesmoke;flex-wrap:wrap">
+    <block wx:for="{{products}}" wx:for-item="product" wx:key="id">
+        <card imageUrl="{{product.image}}"
+              name="{{product.name}}"
+              price = "{{product.price}}"
+              regularPrice = "{{product.regularPrice}}"
+              description="{{product.description}}"
+              showDescription="{{product.showDescription}}"
+              rating="{{product.rating}}"
+              like="{{product.like}}"
+              regularPricePrefix="原价 ："
+              showRegularPrice="{{product.regularPrice != null && product.price < product.regularPrice}}"
+              style="width:50%;height:300px;padding:15rpx;box-sizing: border-box">
+        </card>
+    </block>
+
+    <card imageUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574667807024&di=d9d72d53e41c3a8876b9430b2629e6a6&imgtype=0&src=http%3A%2F%2Fqhyxpic.image.kujiale.com%2Fmr%2F2014%2F12%2F04%2FKSAHLDCDM5CUGPGDABAQAAAA_800x8004356077779665679449.jpg"
+          name="修改颜色"
+          price = "10009"
+          regularPrice = "20000"
+          rating="4.2"
+          like="{{true}}"
+          backgroundColor="rgba(252,193,105,0.9)"
+          regularPricePrefix="原价："
+          showRegularPrice="{{true}}"
+          titleColor="#9b45e4"
+          priceColor="#fa697c"
+          style="width:50%;height:300px;padding:15rpx;box-sizing: border-box">
+    </card>
+
+    <card imageUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574668435829&di=30b7a083fa2a96bec2c55d96ea3cacb9&imgtype=0&src=http%3A%2F%2Fpic23.nipic.com%2F20120822%2F10778334_111659680187_2.jpg"
+          name="显示直接购买"
+          price = "9.9"
+          regularPrice = "100"
+          rating="4.2"
+          like="{{true}}"
+          backgroundColor="transparent"
+          regularPricePrefix="原价："
+          showRegularPrice="{{true}}"
+          titleColor="#dff6f0"
+          priceColor="#46b3e6"
+          showPlaceOrder="{{true}}"
+          fullStarImage="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574668670751&di=98d5cb65af8717db7cf255c1ddea77cb&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a32755e8faf86ac7251df8127c84.png%401280w_1l_2o_100sh.png"
+          style="width:50%;height:300px;padding:15rpx;box-sizing: border-box">
+    </card>
+
+
+    <card imageUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574668435829&di=30b7a083fa2a96bec2c55d96ea3cacb9&imgtype=0&src=http%3A%2F%2Fpic23.nipic.com%2F20120822%2F10778334_111659680187_2.jpg"
+          name="显示直接购买"
+          price = "9.9"
+          regularPrice = "100"
+          rating="4.2"
+          like="{{true}}"
+          backgroundColor="rgb(46,39,157)"
+          regularPricePrefix="原价："
+          showRegularPrice="{{true}}"
+          titleColor="#dff6f0"
+          priceColor="#46b3e6"
+          showPlaceOrder="{{true}}"
+          fullStarImage="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574668670751&di=98d5cb65af8717db7cf255c1ddea77cb&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a32755e8faf86ac7251df8127c84.png%401280w_1l_2o_100sh.png"
+          style="width:100%;height:300px;padding:15rpx;box-sizing: border-box">
+    </card>
+
+</view>
