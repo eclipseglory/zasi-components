@@ -1,0 +1,11 @@
+function eventHandle(event, instance) {
+}
+
+function propertyChange(newValue, oldValue, ownerInstance, instance) {
+}
+
+
+module.exports = {
+    propertyChange: propertyChange,
+    eventHandle: eventHandle
+}

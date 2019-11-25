@@ -1,0 +1,30 @@
+@import "../common/common.wxss";
+
+.mainBg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.product-title-class {
+  -webkit-line-clamp: 1;
+  font-weight: bold;
+}
+
+.price-raw-class {
+  max-width: 100%;
+  -webkit-line-clamp: 1;
+}
+
+.price-class {
+  font-size: 1.5em;
+  font-weight: bold
+}
+
+.card-button{
+  background-color: #272343;
+}
+
+.regular-price-class {
+  text-decoration: line-through;
+}

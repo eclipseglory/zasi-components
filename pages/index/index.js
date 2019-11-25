@@ -7,9 +7,10 @@ Page({
         showOpacity: false,
         pointerClass: null,
         sliderPointerClass: null,
-        pointerImage : null,
-        pointerImage2 : null,
+        pointerImage: null,
+        pointerImage2: null,
     },
+
     onLoad: function () {
     },
 
@@ -38,10 +39,10 @@ Page({
             showOpacity: false,
             pointerClass: null,
             sliderPointerClass: null,
-            pointerImage : null,
-            pointerImage2 : null,
-            centerClass:null,
-            confirmImage:'confirm-white.svg', //这是自带的确认图片
+            pointerImage: null,
+            pointerImage2: null,
+            centerClass: null,
+            confirmImage: 'confirm-white.svg', //这是自带的确认图片
         }
         return defaultDialogOptions;
     }

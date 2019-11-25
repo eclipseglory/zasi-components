@@ -5,4 +5,5 @@
     <navigator url="../toast/toast">弹出消息</navigator>
     <navigator url="../topBar/tb">Top Bar</navigator>
     <navigator url="../navigatorCell/navigatorCell">Navigator设置行</navigator>
+    <navigator url="../products/products">商品卡片</navigator>
 </view>
