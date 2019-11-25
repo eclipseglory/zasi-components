@@ -16,8 +16,9 @@ Page({
                 image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574651277952&di=1ac6dff63cc31b69b64d7d225e7cceb8&imgtype=0&src=http%3A%2F%2Fimg1.99114.com%2Fgroup10%2FM00%2F1F%2F1E%2FrBADs1opT8OAW9tiAAV20rsKTW0879.jpg',
             },
             {
+                mix:true,
                 rating:2.2,
-                name: '大象毛绒玩具',
+                name: '文字图片混合',
                 showDescription: false,
                 price: 99.9,
                 image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574666036338&di=246012fe88a16cd12c1579e4be9c6897&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F16%2F08%2F31%2F1857c6ae7d11706.jpg',

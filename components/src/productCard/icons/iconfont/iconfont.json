@@ -1,0 +1,58 @@
+{
+  "id": "1529345",
+  "name": "product-card",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1934678",
+      "name": "购买",
+      "font_class": "goumai",
+      "unicode": "e73b",
+      "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "10331131",
+      "name": "heart",
+      "font_class": "heart",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "10331139",
+      "name": "heart-line",
+      "font_class": "heart-line",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "10331143",
+      "name": "rating-line",
+      "font_class": "rating-line",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "10331144",
+      "name": "rating-solid",
+      "font_class": "rating-solid",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "10331153",
+      "name": "rating-half",
+      "font_class": "rating-half",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "11391504",
+      "name": "购买",
+      "font_class": "goumai1",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    }
+  ]
+}

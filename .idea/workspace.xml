@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db2c748a-2022-492a-a635-9258b05215ff" name="Default Changelist" comment="修改引用路径">
+    <list default="true" id="db2c748a-2022-492a-a635-9258b05215ff" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/src/common/common.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/common/common.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/pie/p.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/pie/p.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/addcart.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/like-1.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/like-2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/placeorder.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/rating-half.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/rating-line.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/rating-solid.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/productCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/productCard/productCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/productCard.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/productCard/productCard.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/src/productCard/productCard.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/productCard/productCard.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/products/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/products.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/products/products.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/products.wxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,12 +42,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="260" />
-    <option name="y" value="20" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
-  </component>
   <component name="ProjectId" id="1U5FGquCdYuTyOUGyxgl9iE5tfF" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -42,7 +51,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/src/productCard/icons" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/src/productCard/icons/iconfont" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -52,18 +61,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\我的小程序\zasi-components1\components\src\productCard\icons\iconfont" />
       <recent name="E:\我的小程序\zasi-components1\components\src\productCard\icons" />
       <recent name="E:\我的小程序\zasi-components1\pages\products" />
       <recent name="E:\我的小程序\zasi-components1\components\src" />
       <recent name="E:\我的小程序\zasi-components1\components\src\card" />
-      <recent name="E:\我的小程序\zasi-components1\libs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\我的小程序\zasi-components1\components\src\productCard\icons\iconfont" />
       <recent name="E:\我的小程序\zasi-components1\libs\routers" />
       <recent name="E:\我的小程序\zasi-components1\components\src" />
       <recent name="E:\我的小程序\zasi-components1\components\src\pie2" />
       <recent name="E:\我的小程序\zasi-components1\components\src\pie" />
-      <recent name="E:\我的小程序\zasi-components1\components\src\mask" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -114,7 +123,7 @@
       <workItem from="1574076973328" duration="3146000" />
       <workItem from="1574173000611" duration="5129000" />
       <workItem from="1574331164539" duration="3916000" />
-      <workItem from="1574638462680" duration="20444000" />
+      <workItem from="1574638462680" duration="32223000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1573544419380</created>
@@ -200,7 +209,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574079095893</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="增加了商品卡片组件">
+      <created>1574659279318</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1574659279318</updated>
+    </task>
+    <task id="LOCAL-00014" summary="增加了商品卡片组件">
+      <created>1574659592662</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1574659592662</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +261,7 @@
     <MESSAGE value="修改引用路径" />
     <MESSAGE value="新增topbar bottombar navigatorcell组件，并取消了单个组件的npm发布" />
     <MESSAGE value="删除" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除" />
+    <MESSAGE value="增加了商品卡片组件" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加了商品卡片组件" />
   </component>
 </project>

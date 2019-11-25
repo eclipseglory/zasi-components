@@ -1,12 +1,63 @@
 Component({
     properties: {
         backgroundColor: {
-            value: 'rgba(0,0,0,0.618)',
+            value: '#f4f9f4',
             type: String
         },
+
+        titleColor: {
+            value: '#5c8d89',
+            type: String
+        },
+
+        placeOrderColor: {
+            value: '#5c8d89',
+            type: String
+        },
+
+        cartColor: {
+            value: '#5c8d89',
+            type: String
+        },
+
+        likeColor: {
+            value: '#74b49b',
+            type: String
+        },
+
+        priceColor: {
+            value: '#74b49b',
+            type: String
+        },
+
+        descriptionColor: {
+            value: '#a7d7c5',
+            type: String
+        },
+
+        ratingTextColor: {
+            value: '#a7d7c5',
+            type: String
+        },
+
+        starColor: {
+            value: '#a7d7c5',
+            type: String
+        },
+
+        cartButtonSize: {
+            value: '1.5em',
+            type: String
+        },
+
         like: {
             value: false,
             type: Boolean
+        },
+
+        likeSize: {
+            value: '2em',
+            type: String
         },
 
         showDescription: {
@@ -14,20 +65,6 @@ Component({
             type: Boolean
         },
 
-        likeImageUrl: {
-            value: 'icons/like-2.svg',
-            type: String
-        },
-
-        unLikeImageUrl: {
-            value: 'icons/like-1.svg',
-            type: String
-        },
-
-        likeSize: {
-            value: 0,
-            type: Number
-        },
         name: {
             value: null,
             type: String
@@ -47,18 +84,8 @@ Component({
             type: String
         },
 
-        titleColor: {
-            value: 'whitesmoke',
-            type: String
-        },
-
         description: {
             value: undefined,
-            type: String
-        },
-
-        descriptionColor: {
-            value: 'lightGrey',
             type: String
         },
 
@@ -68,19 +95,20 @@ Component({
         },
 
         fullStarImage: {
-            value: 'icons/rating-solid.svg',
+            value: null,
             type: String
         },
         halfStarImage: {
-            value: 'icons/rating-half.svg',
+            value: null,
             type: String
         },
         noStarImage: {
-            value: 'icons/rating-line.svg',
+            value: null,
             type: String
         },
-        priceColor: {
-            value: '#bae8e8',
+
+        ratingSize: {
+            value: '0.5em',
             type: String
         },
 
@@ -115,18 +143,19 @@ Component({
             type: String
         },
 
-        showPlaceOrder:{
-            value:false,
-            type:Boolean,
+        showPlaceOrder: {
+            value: false,
+            type: Boolean,
         },
 
-        showAddCart:{
-            value:true,
-            type:Boolean,
+        showAddCart: {
+            value: true,
+            type: Boolean,
+        },
+        mix: {
+            value: false,
+            type: Boolean
         }
-
-
-
     },
 
     data: {},
@@ -150,35 +179,48 @@ Component({
                 console.warn('没找到根节点，可能尺寸大小为0')
             } else {
                 let w = res[0].width;
-                let likeW = Math.floor(w * 0.15);
                 let starSize = Math.floor(w * 0.1);
                 that.setData({
                     cardWidth: w,
                     starSize: starSize,
-                    likeSize: likeW
                 })
             }
         });
         let rating = this.properties.rating;
+        let useImg = this.properties.fullStarImage != null && this.properties.halfStarImage != null && this.properties.noStarImage != null;
         let stars = [];
         for (let i = 0; i < 5; i++) {
             let index = i + 1;
             let t = rating / index;
             if (t >= 1) {
                 //满星
-                stars[i] = this.properties.fullStarImage;
+                if (useImg) {
+                    stars[i] = this.properties.fullStarImage;
+                } else {
+                    stars[i] = 'iconrating-solid';
+                }
+
             } else {
                 let t2 = index - rating;
                 if (t2 < 0.5) {
                     //半醒
-                    stars[i] = this.properties.halfStarImage;
+                    if (useImg) {
+                        stars[i] = this.properties.halfStarImage;
+                    } else {
+                        stars[i] = 'iconrating-half';
+                    }
                 } else {
                     //无星
-                    stars[i] = this.properties.noStarImage;
+                    if (useImg) {
+                        stars[i] = this.properties.noStarImage;
+                    } else {
+                        stars[i] = 'iconrating-line';
+                    }
                 }
             }
         }
         this.setData({
+            useImg: useImg,
             star1: stars[0],
             star2: stars[1],
             star3: stars[2],

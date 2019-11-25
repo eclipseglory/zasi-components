@@ -1,9 +1,27 @@
 @import "../common/common.wxss";
+@import "icons/iconfont/iconfont.wxss";
 
 .mainBg {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+}
+
+.product-image-class {
+  position: relative;
+  width: 100%;
+  background-color: lightgray
+}
+
+.mask-class {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.product-text-mix-style {
+  position: absolute;
+  bottom: 0;
 }
 
 .product-title-class {
@@ -21,8 +39,8 @@
   font-weight: bold
 }
 
-.card-button{
-  background-color: #272343;
+.card-button {
+  background-color: #5d5d5d;
 }
 
 .regular-price-class {

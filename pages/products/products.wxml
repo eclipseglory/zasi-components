@@ -3,14 +3,16 @@
         <card imageUrl="{{product.image}}"
               name="{{product.name}}"
               price = "{{product.price}}"
+              imageSize="300px"
               regularPrice = "{{product.regularPrice}}"
               description="{{product.description}}"
               showDescription="{{product.showDescription}}"
               rating="{{product.rating}}"
               like="{{product.like}}"
               regularPricePrefix="原价 ："
+              mix = "{{product.mix}}"
               showRegularPrice="{{product.regularPrice != null && product.price < product.regularPrice}}"
-              style="width:50%;height:300px;padding:15rpx;box-sizing: border-box">
+              style="width:50%;padding:15rpx;box-sizing: border-box">
         </card>
     </block>
 
@@ -25,7 +27,11 @@
           showRegularPrice="{{true}}"
           titleColor="#9b45e4"
           priceColor="#fa697c"
-          style="width:50%;height:300px;padding:15rpx;box-sizing: border-box">
+          likeColor="red"
+          cartColor="black"
+          starColor="yellow"
+          imageSize="300px"
+          style="width:50%;padding:15rpx;box-sizing: border-box">
     </card>
 
     <card imageUrl="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574668435829&di=30b7a083fa2a96bec2c55d96ea3cacb9&imgtype=0&src=http%3A%2F%2Fpic23.nipic.com%2F20120822%2F10778334_111659680187_2.jpg"
@@ -37,11 +43,11 @@
           backgroundColor="transparent"
           regularPricePrefix="原价："
           showRegularPrice="{{true}}"
-          titleColor="#dff6f0"
           priceColor="#46b3e6"
           showPlaceOrder="{{true}}"
+          imageSize="300px"
           fullStarImage="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574668670751&di=98d5cb65af8717db7cf255c1ddea77cb&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a32755e8faf86ac7251df8127c84.png%401280w_1l_2o_100sh.png"
-          style="width:50%;height:300px;padding:15rpx;box-sizing: border-box">
+          style="width:50%;padding:15rpx;box-sizing: border-box">
     </card>
 
 
@@ -54,7 +60,6 @@
           backgroundColor="rgb(46,39,157)"
           regularPricePrefix="原价："
           showRegularPrice="{{true}}"
-          titleColor="#dff6f0"
           priceColor="#46b3e6"
           showPlaceOrder="{{true}}"
           fullStarImage="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574668670751&di=98d5cb65af8717db7cf255c1ddea77cb&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01a32755e8faf86ac7251df8127c84.png%401280w_1l_2o_100sh.png"
