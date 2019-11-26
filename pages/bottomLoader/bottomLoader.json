@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "loader": "../../components/src/bottomLoader/bottomLoader",
+    "center-loader": "../../components/src/centerLoader/centerLoader"
+  }
+}

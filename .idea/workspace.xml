@@ -2,30 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db2c748a-2022-492a-a635-9258b05215ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/src/productCard/icons/iconfont/iconfont.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/bottomLoader/bottomLoader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/bottomLoader/bottomLoader.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/bottomLoader/bottomLoader.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/bottomLoader/bottomLoader.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/centerLoader/centerLoader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/centerLoader/centerLoader.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/centerLoader/centerLoader.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/centerLoader/centerLoader.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/loader/icons/dot.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/loader/icons/line.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/loader/loader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/loader/loader.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/loader/loader.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/loader/loader.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/loader/loader.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/slider/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/slider/slider.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/slider/slider.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/slider/slider.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textImage/teacher.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textImage/textImage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textImage/textImage.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textImage/textImage.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textImage/textImage.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textSection/textSection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textSection/textSection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textSection/textSection.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/src/textSection/textSection.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/bottomLoader/bottomLoader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/bottomLoader/bottomLoader.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/bottomLoader/bottomLoader.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/bottomLoader/bottomLoader.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/common/common.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/common/common.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/addcart.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/like-1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/like-2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/placeorder.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/rating-half.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/rating-line.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/src/productCard/icons/rating-solid.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/src/productCard/productCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/productCard/productCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/src/productCard/productCard.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/productCard/productCard.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/src/productCard/productCard.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/src/productCard/productCard.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/products/products.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/products.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/products/products.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/products.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.wxml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,12 +60,17 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/src/productCard/icons/iconfont" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components/src/loader/icons" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -60,13 +79,6 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\我的小程序\zasi-components1\components\src\productCard\icons\iconfont" />
-      <recent name="E:\我的小程序\zasi-components1\components\src\productCard\icons" />
-      <recent name="E:\我的小程序\zasi-components1\pages\products" />
-      <recent name="E:\我的小程序\zasi-components1\components\src" />
-      <recent name="E:\我的小程序\zasi-components1\components\src\card" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\我的小程序\zasi-components1\components\src\productCard\icons\iconfont" />
       <recent name="E:\我的小程序\zasi-components1\libs\routers" />
@@ -74,18 +86,13 @@
       <recent name="E:\我的小程序\zasi-components1\components\src\pie2" />
       <recent name="E:\我的小程序\zasi-components1\components\src\pie" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\我的小程序\zasi-components1\components\src\loader\icons" />
+      <recent name="E:\我的小程序\zasi-components1\components\src\centerLoader" />
+      <recent name="E:\我的小程序\zasi-components1\components\src" />
+      <recent name="E:\我的小程序\zasi-components1\components\src\bottomLoader\icons" />
+      <recent name="E:\我的小程序\zasi-components1\pages\bottomLoader" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -103,6 +110,18 @@
         <item itemvalue="npm.test" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -123,7 +142,8 @@
       <workItem from="1574076973328" duration="3146000" />
       <workItem from="1574173000611" duration="5129000" />
       <workItem from="1574331164539" duration="3916000" />
-      <workItem from="1574638462680" duration="32223000" />
+      <workItem from="1574638462680" duration="37398000" />
+      <workItem from="1574791192976" duration="14692000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交">
       <created>1573544419380</created>
@@ -223,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574659592662</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="修改product card显示">
+      <created>1574710076892</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1574710076892</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +271,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -262,6 +291,17 @@
     <MESSAGE value="新增topbar bottombar navigatorcell组件，并取消了单个组件的npm发布" />
     <MESSAGE value="删除" />
     <MESSAGE value="增加了商品卡片组件" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加了商品卡片组件" />
+    <MESSAGE value="修改product card显示" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改product card显示" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1574794773569">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1574794773569" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1574791202891">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1574791202891" />
   </component>
 </project>

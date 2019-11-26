@@ -45,6 +45,16 @@ Component({
             type: String
         },
 
+        titleSize: {
+            value: '1em',
+            type: String
+        },
+
+        descriptionSize: {
+            value: '0.5em',
+            type: String
+        },
+
         cartButtonSize: {
             value: '1.5em',
             type: String
@@ -56,7 +66,22 @@ Component({
         },
 
         likeSize: {
+            value: '1.5em',
+            type: String
+        },
+
+        priceSize: {
             value: '2em',
+            type: String
+        },
+
+        priceTextSize: {
+            value: '0.5em',
+            type: String
+        },
+
+        regularPriceSize: {
+            value: '0.5em',
             type: String
         },
 

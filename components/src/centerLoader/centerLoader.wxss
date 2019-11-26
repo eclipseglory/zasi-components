@@ -1,0 +1,12 @@
+@import "../common/common.wxss";
+
+.center-loader {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+  color: #2c2c2c;
+  padding: 10px 20px;
+}

@@ -1,0 +1,23 @@
+<view class="ext-class sliderContainer" style="width:{{width}};height:{{height}};">
+    <swiper style="width:100%;height:100%"
+            indicator-dots="{{indicatorDots}}"
+            indicator-color="{{indicatorColor}}"
+            indicator-active-color="{{indicatorActiveColor}}"
+            autoplay="{{autoplay}}"
+            interval="{{interval}}"
+            duration="{{duration}}">
+        <block wx:for="{{images}}" wx:for-item="image" wx:key="id">
+            <swiper-item>
+                <view style="width:100%;height:100%;">
+                    <image mode="{{mode}}" src="{{image.url}}" style="width:100%;height:100%"></image>
+                    <view class="textBackground"
+                          style="height:{{textBackgroundHeight}};background-color:{{textBackground}};opacity:{{textBackgroundOpacity}};"></view>
+                    <view class="textBackground textArea"
+                          style="padding:{{textPadding}};align-items:{{textVAlign}};justify-content:{{textHAlign}};font-size:{{textSize}};color:{{textColor}};height:{{textBackgroundHeight}};">
+                        {{image.text}}
+                    </view>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>

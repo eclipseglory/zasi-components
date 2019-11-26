@@ -18,7 +18,7 @@
           style="padding:{{cardWidth*0.05}}px;">
         <view class="full-width flex-column flex-space-between">
             <text id="name" class="full-width ellipsis-multiple-line-text product-title-class"
-                  style="text-align:center;color:{{titleColor}}">{{name}}
+                  style="text-align:center;color:{{titleColor}};font-size:{{titleSize}}">{{name}}
             </text>
 
             <view id="rating" class="full-width flex-row flex-space-between" style="font-size:{{ratingSize}};padding:10px 0px">
@@ -44,18 +44,21 @@
                 </view>
             </view>
             <block wx:if="{{showDescription}}">
-                <text id="des" class="full-width ellipsis-multiple-line-text small-font"
-                      style="-webkit-line-clamp:2;color:{{descriptionColor}}">{{description}}
+                <text id="des" class="full-width ellipsis-multiple-line-text"
+                      style="-webkit-line-clamp:2;color:{{descriptionColor}};font-size:{{descriptionSize}}">{{description}}
                 </text>
             </block>
+            <text wx:if="{{!showRegularPrice}}"
+                  class="ellipsis-multiple-line-text" style="font-size:{{regularPriceSize}}">{{' '}}
+            </text>
             <view class="full-width flex-row flex-space-between">
                 <view class="flex-column">
-                    <view class="small-font ellipsis-multiple-line-text price-raw-class" style="color:{{titleColor}}">
-                        {{pricePrefix}}<span class="price-class" style="color:{{priceColor}}">{{price}}</span>{{priceSuffix}}
+                    <view class="ellipsis-multiple-line-text price-raw-class" style="font-size:{{priceTextSize}};color:{{titleColor}}">
+                        {{pricePrefix}}<span class="price-class" style="font-size:{{priceSize}};color:{{priceColor}}">{{price}}</span>{{priceSuffix}}
                     </view>
                     <view wx:if="{{showRegularPrice}}"
-                          class="small-font ellipsis-multiple-line-text regular-price-class"
-                          style="color:{{titleColor}}">
+                          class="ellipsis-multiple-line-text regular-price-class"
+                          style="font-size:{{regularPriceSize}};color:{{titleColor}}">
                         {{regularPricePrefix}}{{regularPrice}}{{regularPriceSuffix}}
                     </view>
                 </view>

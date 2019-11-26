@@ -6,4 +6,5 @@
     <navigator url="../topBar/tb">Top Bar</navigator>
     <navigator url="../navigatorCell/navigatorCell">Navigator设置行</navigator>
     <navigator url="../products/products">商品卡片</navigator>
+    <navigator url="../bottomLoader/bottomLoader">bottom loader</navigator>
 </view>

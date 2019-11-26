@@ -1,0 +1,19 @@
+<view class="ext-class text-image-container" style="width:{{width}};height:{{height}}">
+
+    <wxs module="m">
+        var getInteger = function(number) {
+            return Math.floor(number);
+        }
+        module.exports.getInteger = getInteger;
+    </wxs>
+
+    <view class="ext-image-container-class image-container" style="width:{{imageContainerPercent*100}}%">
+        <image class="ext-image-class" mode = "{{mode}}" src="{{imageUrl}}" style="width:{{imageWidth}};height:{{imageHeight}}"></image>
+    </view>
+    <view style="display:flex;flex-direction: column; justify-content:center;align-items:center;width:{{ (1-imageContainerPercent)*100}}%;height:100%">
+        <view class="right-container ext-number-container-class">
+            <span class="ext-number-class">{{isInteger?m.getInteger(startNumber):startNumber}}</span>{{valueSuffix}}
+        </view>
+        <view class="right-container ext-content-class">{{content}}</view>
+    </view>
+</view>

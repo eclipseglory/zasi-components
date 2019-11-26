@@ -1,0 +1,14 @@
+.textBackground {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  box-sizing: border-box;
+}
+
+.textArea {
+  display: flex;
+}
+
+.sliderContainer {
+  box-sizing: border-box;
+}

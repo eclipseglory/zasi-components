@@ -1,0 +1,15 @@
+<view id="root"
+      class="shadow center-loader ext-class round-corner"
+      style="bottom:{{bottom}}px;left:{{left}}px;visibility: {{show?'visible':'hidden'}};z-index: {{zIndex}};background-color:{{backgroundColor}}">
+    <icon iconSize="{{iconSize}}"
+          iconUrl="{{iconUrl}}"
+          duration="{{iconDuration}}"
+          startRotate="{{show}}">
+    </icon>
+    <block wx:if="{{text}}">
+        <view  class="ellipsis-multiple-line-text"
+               style="text-align:center;margin-top:1em;max-width:300rpx;-webkit-line-clamp:2;adding:0.5em;text-wrap: normal">
+            {{text}}
+        </view>
+    </block>
+</view>

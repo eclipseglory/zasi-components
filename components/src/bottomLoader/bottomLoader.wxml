@@ -1,0 +1,13 @@
+<view id="root"
+      class="bottom-loader flex-row ext-class"
+      style="left:{{left}}px;visibility: {{show?'visible':'hidden'}};z-index: {{zIndex}};background-color:{{backgroundColor}}">
+
+    <icon iconSize="{{iconSize}}"
+          iconUrl="{{iconUrl}}"
+          duration="{{iconDuration}}"
+          startRotate = "{{show}}">
+    </icon>
+    <view style="padding-left:0.5em">
+        {{text}}
+    </view>
+</view>
