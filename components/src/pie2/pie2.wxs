@@ -6,7 +6,7 @@ function getRoot(instance) {
 
 
 function getPieBackground(instance) {
-    return instance.selectComponent('#zasi-pie-back-ground');
+    return instance.selectComponent('#pie-back-ground');
 }
 
 //

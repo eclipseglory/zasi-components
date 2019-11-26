@@ -6,7 +6,7 @@ function getRoot(instance) {
 
 
 function getPieBackground(instance) {
-    return instance.selectComponent('#zasi-pie-back-ground');
+    return instance.selectComponent('#pie-back-ground');
 }
 
 function getPie1(instance) {
@@ -14,7 +14,7 @@ function getPie1(instance) {
 }
 
 function getPie2(instance) {
-    return instance.selectComponent('#zasi-pie2');
+    return instance.selectComponent('#pie2');
 }
 
 function initAngle(angle) {
