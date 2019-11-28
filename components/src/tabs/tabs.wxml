@@ -1,0 +1,13 @@
+<view id="root">
+    <view bindtap="activeTab" class="flex-row flex-space-around full-width tabs" style="position:{{sticky?'sticky':'relative'}};top:{{top}};z-index: 1">
+        <block wx:for="{{tabs}}" wx:for-item="tab" wx:key="key">
+            <view class="flex-column">
+                <view class="tab-text {{tab.statusClass+ '-text'}}" data-index="{{index}}" data-key="{{tab.key}}">{{tab.name}}
+                </view>
+                <view class="bottom-line {{tab.statusClass + '-line'}}">
+                </view>
+            </view>
+        </block>
+    </view>
+    <slot></slot>
+</view>

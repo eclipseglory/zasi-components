@@ -39,7 +39,7 @@
 }
 
 .shadow {
-  box-shadow: 2px 2px 3px darkgray;
+  box-shadow: 2px 2px 3px lightgrey;
 }
 
 .border-box-container {

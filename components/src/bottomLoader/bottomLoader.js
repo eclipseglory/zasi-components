@@ -10,7 +10,7 @@ Component({
             type: String
         },
         iconSize: {
-            value: '24px',
+            value: '20px',
             type: String
         },
         iconDuration: {

@@ -1,11 +1,11 @@
 .bottom-loader {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   width:100%;
   bottom:0;
-  font-size: 1em;
+  font-size: 0.75em;
   color: #2c2c2c;
   padding: 0.5em;
 }

@@ -1,0 +1,20 @@
+.deactive-tab {
+  display: none
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes fadeShow {
+  from {opacity: 0.2;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeShow {
+  from {opacity: 0.2;}
+  to {opacity: 1;}
+}
+
+.active-tab {
+  display: block;
+  -webkit-animation: fadeShow 1s; /* Safari 4.0 - 8.0 */
+  animation: fadeShow 1s;
+}

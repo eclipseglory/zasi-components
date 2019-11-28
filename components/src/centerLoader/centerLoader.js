@@ -5,8 +5,12 @@ Component({
     ],
 
     properties: {
+        showMask: {
+            value: true,
+            type: Boolean
+        },
         backgroundColor: {
-            value: 'whitesmoke',
+            value: '#ffffff',
             type: String
         },
         iconSize: {
@@ -51,13 +55,16 @@ Component({
         let that = this;
         let info = wx.getSystemInfoSync();
         query.select('#root').boundingClientRect().exec(function (res) {
+
             let rect = res[0];
             if (rect == null) return;
-
-            let bottom = (info.windowHeight - rect.height) / 2 + rect.height/2;
+            let bottom = (info.windowHeight - rect.height) / 2 + rect.height / 2;
             that.setData({
                 left: (info.windowWidth - rect.width) / 2,
-                bottom: bottom
+                bottom: bottom,
+                startBottom: info.windowHeight
+            },function(){
+                console.log('get root')
             });
         });
     },
