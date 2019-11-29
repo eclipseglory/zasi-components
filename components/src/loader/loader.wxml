@@ -1,10 +1,7 @@
 <view id="root"
-      style="width:{{iconSize}};height:{{iconSize}};"
-      prop="{{startRotate}}"
-      change:prop="{{wxs.propertyChange}}">
-    <wxs module="wxs" src="loader.wxs"></wxs>
-    <image  data-duration="{{duration}}"
-            id="icon" style="width:100%;height:100%"
+      style="width:{{iconSize}};height:{{iconSize}};">
+    <image  class="rotate"
+            id="icon" style="animation-duration={{duration}};animation-timing-function:{{animationMode}};width:100%;height:100%"
             mode="aspectFill"
             src="{{iconUrl}}" ></image>
 </view>

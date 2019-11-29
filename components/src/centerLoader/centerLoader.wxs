@@ -1,0 +1,56 @@
+function eventHandle(event, instance) {
+}
+
+function propertyChange(newValue, oldValue, ownerInstance, instance) {
+    if (newValue != oldValue && newValue != null) {
+
+        if (oldValue == null && !newValue) return;//第一次改变属性，如果之前没有改过，且是不现实，则不处理
+
+        console.log('here', newValue, oldValue);
+        var component = ownerInstance.selectComponent('#root');
+        console.log(JSON.stringify(component.getDataset()))
+        var startBottom = component.getDataset().startBottom;
+        var targetBottom = component.getDataset().bottom;
+        var duration = 1000;
+        var totalCount = Math.floor(duration / (1000 / 60));
+        var count = 0;
+        var start = component.getState().current;
+
+        if (start == null) {
+            component.getState().current = startBottom;
+            start = startBottom;
+        }
+        var delta = (targetBottom - start) / totalCount;
+        console.log(start,targetBottom);
+        if (!newValue) {
+            delta = (start - startBottom) / totalCount;
+            delta *= -1;
+        } else {
+
+        }
+
+        function move() {
+            var now = start + delta;
+            count++;
+            if (count >= totalCount) {
+                now = targetBottom;
+            }
+            component.setStyle({
+                bottom: now + 'px !important'
+            });
+            component.getState().current = now;
+            if (count >= totalCount) {
+                return;
+            }
+            ownerInstance.requestAnimationFrame(move);
+        }
+
+        move();
+    }
+}
+
+
+module.exports = {
+    propertyChange: propertyChange,
+    eventHandle: eventHandle
+}

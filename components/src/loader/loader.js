@@ -9,6 +9,10 @@ Component({
             value: 1000,
             type: Number
         },
+        animationMode: {
+            value: 'linear',
+            type: String
+        },
         iconUrl: {
             value: 'icons/dot.svg',
             type: String

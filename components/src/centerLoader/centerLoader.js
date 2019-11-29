@@ -13,6 +13,10 @@ Component({
             value: '#ffffff',
             type: String
         },
+        animationMode: {
+            value: 'linear',
+            type: String
+        },
         iconSize: {
             value: '64px',
             type: String
@@ -64,7 +68,6 @@ Component({
                 bottom: bottom,
                 startBottom: info.windowHeight
             },function(){
-                console.log('get root')
             });
         });
     },

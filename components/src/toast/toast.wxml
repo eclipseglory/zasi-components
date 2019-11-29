@@ -1,4 +1,4 @@
-<cover-view id="root"
+<view id="root"
             class="root shadow ext-class"
             prop="{{showMe}}"
             change:prop="{{wxs.showChange}}"
@@ -13,4 +13,4 @@
             style="bottom:{{bottom}}px !important;left:{{left}}px !important;z-index:{{zIndex}}">
     <wxs module="wxs" src="./toast.wxs"></wxs>
     {{text}}
-</cover-view>
+</view>

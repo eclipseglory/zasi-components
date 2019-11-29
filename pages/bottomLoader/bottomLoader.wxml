@@ -3,6 +3,6 @@
     <button bindtap="showCenterLoad">显示/隐藏 2</button>
     <button bindtap="showCenterLoad2">显示/隐藏 3</button>
     <loader text="test" show="{{show}}"></loader>
-    <center-loader text="加载中..." show="{{show2}}"></center-loader>
-    <center-loader ext-class="round" show="{{show3}}" backgroundColor="transparent"></center-loader>
+    <center-loader text="加载中..." show="{{show2}}" showMask="{{false}}"></center-loader>
+    <center-loader ext-class="round" show="{{show3}}" animationMode="ease" backgroundColor="transparent" showMask="{{false}}"></center-loader>
 </view>
