@@ -3,8 +3,7 @@ Page({
         products: [
             {
                 name: '默认',
-                image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574651275534&di=9fe506f3f890d0dda8fab8f7760fdf83&imgtype=0&src=http%3A%2F%2Fimage3.suning.cn%2Fcontent%2Fcatentries%2F00000000010504%2F000000000105048710%2Ffullimage%2F000000000105048710_1f.jpg',
-
+                image: '../../../pages/products/images/bottle3x.png'
             },
 
             {
@@ -26,8 +25,9 @@ Page({
             {
                 rating:5,
                 like:true,
-                name: '拔牙鲨鱼',
+                name: '平铺图片不显示背景色',
                 price: 80,
+                imageMode:"aspectFill",
                 regularPrice:200,
                 image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574666039441&di=12ee9e082a041d5c91edd0019558907a&imgtype=0&src=http%3A%2F%2Fimg14.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft703%2F166%2F243164513%2F88553%2Fc24412a9%2F5497b5e6N5cdf3f07.jpg',
             },

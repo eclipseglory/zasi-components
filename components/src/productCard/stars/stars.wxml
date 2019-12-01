@@ -1,0 +1,17 @@
+<view class="flex-row" style="color:{{starColor}};">
+    <i class="iconfont {{star1}}" style="font-size:{{starSize}}"></i>
+    <i class="iconfont {{star2}}" style="font-size:{{starSize}}"></i>
+    <i class="iconfont {{star3}}" style="font-size:{{starSize}}"></i>
+    <i class="iconfont {{star4}}" style="font-size:{{starSize}}"></i>
+    <i class="iconfont {{star5}}" style="font-size:{{starSize}}"></i>
+    <!--                    <image src="{{star1}}" style="width:{{starSize}}px;height:{{starSize}}px">-->
+    <!--                    </image>-->
+    <!--                    <image src="{{star2}}" style="width:{{starSize}}px;height:{{starSize}}px">-->
+    <!--                    </image>-->
+    <!--                    <image src="{{star3}}" style="width:{{starSize}}px;height:{{starSize}}px">-->
+    <!--                    </image>-->
+    <!--                    <image src="{{star4}}" style="width:{{starSize}}px;height:{{starSize}}px">-->
+    <!--                    </image>-->
+    <!--                    <image src="{{star5}}" style="width:{{starSize}}px;height:{{starSize}}px">-->
+    <!--                    </image>-->
+</view>

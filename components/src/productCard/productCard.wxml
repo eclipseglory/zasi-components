@@ -1,15 +1,19 @@
-<navigator url="{{url}}" id="root" class="full-fill flex-column flex-end mainBg round-corner shadow border-box-container"
-      style="position:relative;background-color:{{backgroundColor}}">
-    <image id="productImg" style="height:{{imageSize}}"
-           mode="aspectFill"
-           class="product-image-class {{mix?'round-corner':'round-corner-bottom'}}"
-           src="{{imageUrl}}">
-    </image>
-<!--    <image src="{{like?likeImageUrl:unLikeImageUrl}}"-->
-<!--           style="position:absolute;top:{{cardWidth/20}}px;right:{{cardWidth/20}}px;width:{{likeSize}};height:{{likeSize}}">-->
-<!--    </image>-->
+<navigator url="{{url}}" id="root"
+           class="full-fill flex-column flex-end mainBg round-corner shadow border-box-container"
+           style="position:relative;background-color:{{backgroundColor}}">
+    <view class="flex full-width  {{mix?'round-corner':'round-corner-bottom'}}" style="height:{{imageSize}};background-image: linear-gradient(45deg,{{imageBackgroundColor1}} 10%,{{imageBackgroundColor2}});">
+        <image id="productImg" style="width:100%;height:100%"
+               mode="{{imageMode}}"
+               class="product-image-class {{mix?'round-corner':'round-corner-bottom'}}"
+               src="{{imageUrl}}">
+        </image>
+    </view>
+
+    <!--    <image src="{{like?likeImageUrl:unLikeImageUrl}}"-->
+    <!--           style="position:absolute;top:{{cardWidth/20}}px;right:{{cardWidth/20}}px;width:{{likeSize}};height:{{likeSize}}">-->
+    <!--    </image>-->
     <i class="iconfont {{like?'iconheart':'iconheart-line'}}"
-            style="color:{{likeColor}};position:absolute;top:{{cardWidth/20}}px;right:{{cardWidth/20}}px;font-size:{{likeSize}}"></i>
+       style="color:{{likeColor}};position:absolute;top:{{cardWidth/20}}px;right:{{cardWidth/20}}px;font-size:{{likeSize}}"></i>
     <view wx:if="{{mix}}" id='mask' class="full-fill round-corner mask-class"
           style="background-image:linear-gradient(transparent 40%, {{backgroundColor}})">
 
@@ -18,59 +22,59 @@
           style="padding:{{cardWidth*0.05}}px;">
         <view class="full-width flex-column flex-space-between">
             <text id="name" class="full-width ellipsis-multiple-line-text product-title-class"
-                  style="text-align:center;color:{{titleColor}};font-size:{{titleSize}}">{{name}}
+                  style="color:{{titleColor}};font-size:{{titleSize}};margin-bottom:0.5em">{{name}}
             </text>
-
-            <view id="rating" class="full-width flex-row flex-space-between" style="font-size:{{ratingSize}};padding:10px 0px">
-                <stars starColor="{{starColor}}" rating="{{rating}}" starSize="{{ratingSize}}"></stars>
-<!--                <view class="flex-row" style="color:{{starColor}}">-->
-<!--                    <i class="iconfont {{star1}}"></i>-->
-<!--                    <i class="iconfont {{star2}}"></i>-->
-<!--                    <i class="iconfont {{star3}}"></i>-->
-<!--                    <i class="iconfont {{star4}}"></i>-->
-<!--                    <i class="iconfont {{star5}}"></i>-->
-<!--&lt;!&ndash;                    <image src="{{star1}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
-<!--&lt;!&ndash;                    </image>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <image src="{{star2}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
-<!--&lt;!&ndash;                    </image>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <image src="{{star3}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
-<!--&lt;!&ndash;                    </image>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <image src="{{star4}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
-<!--&lt;!&ndash;                    </image>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <image src="{{star5}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
-<!--&lt;!&ndash;                    </image>&ndash;&gt;-->
-<!--                </view>-->
-                <view style="color:{{ratingTextColor}}">
-                    {{rating}}/5
-                </view>
-            </view>
             <block wx:if="{{showDescription}}">
                 <text id="des" class="full-width ellipsis-multiple-line-text"
-                      style="-webkit-line-clamp:2;color:{{descriptionColor}};font-size:{{descriptionSize}}">{{description}}
+                      style="margin-bottom:0.5em;-webkit-line-clamp:2;color:{{descriptionColor}};font-size:{{descriptionSize}}"> {{description}}
                 </text>
             </block>
-            <text wx:if="{{!showRegularPrice}}"
-                  class="ellipsis-multiple-line-text" style="font-size:{{regularPriceSize}}">{{' '}}
-            </text>
-            <view class="full-width flex-row flex-space-between">
-                <view class="flex-column">
-                    <view class="ellipsis-multiple-line-text price-raw-class" style="font-size:{{priceTextSize}};color:{{titleColor}}">
-                        {{pricePrefix}}<span class="price-class" style="font-size:{{priceSize}};color:{{priceColor}}">{{price}}</span>{{priceSuffix}}
-                    </view>
-                    <view wx:if="{{showRegularPrice}}"
-                          class="ellipsis-multiple-line-text regular-price-class"
-                          style="font-size:{{regularPriceSize}};color:{{titleColor}}">
-                        {{regularPricePrefix}}{{regularPrice}}{{regularPriceSuffix}}
-                    </view>
+            <view class="full-width flex-row flex-start">
+                <view wx:if="{{showRegularPrice}}"
+                      class="ellipsis-multiple-line-text regular-price-class"
+                      style="font-size:{{regularPriceSize}};color:{{titleColor}}">
+                    {{regularPricePrefix}}{{regularPrice}}{{regularPriceSuffix}}
                 </view>
-                <view class="flex-row flex-space-around">
-                    <navigator wx:if="{{showPlaceOrder}}" hover-class="card-button" class="flex-row round" >
-                        <i style="color:{{placeOrderColor}};font-size:{{cartButtonSize}}" class="iconfont icongoumai"></i>
-                    </navigator>
-                    <navigator wx:if="{{showAddCart}}" hover-class="card-button" class="flex-row round" >
-                        <i style="color:{{cartColor}};font-size:{{cartButtonSize}}" class="iconfont icongoumai1"></i>
-                    </navigator>
+                <view class="ellipsis-multiple-line-text price-raw-class">
+                    <span class="price-class" style="margin-left:{{showRegularPrice?'0.5em':'0'}};font-size:{{priceSize}};color:{{priceColor}}">{{pricePrefix}}{{price}}{{priceSuffix}}</span>
                 </view>
+            </view>
+            <view id="rating" class="full-width flex-row flex-start"
+                  style="">
+                <stars starColor="{{starColor}}" rating="{{rating}}" starSize="{{ratingSize}}"></stars>
+                <!--                <view class="flex-row" style="color:{{starColor}}">-->
+                <!--                    <i class="iconfont {{star1}}"></i>-->
+                <!--                    <i class="iconfont {{star2}}"></i>-->
+                <!--                    <i class="iconfont {{star3}}"></i>-->
+                <!--                    <i class="iconfont {{star4}}"></i>-->
+                <!--                    <i class="iconfont {{star5}}"></i>-->
+                <!--&lt;!&ndash;                    <image src="{{star1}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
+                <!--&lt;!&ndash;                    </image>&ndash;&gt;-->
+                <!--&lt;!&ndash;                    <image src="{{star2}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
+                <!--&lt;!&ndash;                    </image>&ndash;&gt;-->
+                <!--&lt;!&ndash;                    <image src="{{star3}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
+                <!--&lt;!&ndash;                    </image>&ndash;&gt;-->
+                <!--&lt;!&ndash;                    <image src="{{star4}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
+                <!--&lt;!&ndash;                    </image>&ndash;&gt;-->
+                <!--&lt;!&ndash;                    <image src="{{star5}}" style="width:{{starSize}}px;height:{{starSize}}px">&ndash;&gt;-->
+                <!--&lt;!&ndash;                    </image>&ndash;&gt;-->
+                <!--                </view>-->
+            </view>
+<!--            <text wx:if="{{!showRegularPrice}}"-->
+<!--                  class="ellipsis-multiple-line-text" style="font-size:{{regularPriceSize}}">{{' '}}-->
+<!--            </text>-->
+            <view class="full-width flex-row flex-space-around" style="margin-top:0.5em">
+                <!--                <view class="flex-row flex-space-around">-->
+                <view wx:if="{{showPlaceOrder}}" class="flex-row round-corner product-button"
+                      style="min-width:{{showPlaceOrder?'30%':'80%'}};max-width:{{showPlaceOrder?'30%':'80%'}};font-size:{{cartButtonSize}};background-image: linear-gradient({{buttonColor1}},{{buttonColor2}});">
+                    <i style="color:{{placeOrderColor}};font-size:{{cartButtonSize}}"
+                       class="iconfont icongoumai"></i>
+                </view>
+                <view wx:if="{{showAddCart}}" class="flex-row round-corner shadow product-button"
+                      style="min-width:{{showPlaceOrder?'30%':'80%'}};max-width:{{showPlaceOrder?'30%':'80%'}};font-size:{{cartButtonSize}};background-image: linear-gradient({{buttonColor1}},{{buttonColor2}});">
+                    <i style="color:{{cartColor}};font-size:{{cartButtonSize}}" class="iconfont icongoumai1"></i>
+                </view>
+                <!--                </view>-->
             </view>
         </view>
     </view>

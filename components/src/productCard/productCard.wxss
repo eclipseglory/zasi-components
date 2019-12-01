@@ -10,7 +10,6 @@
 .product-image-class {
   position: relative;
   width: 100%;
-  background-color: lightgray
 }
 
 .mask-class {
@@ -29,6 +28,10 @@
   font-weight: bold;
 }
 
+.product-button {
+  padding: 0.5em 0.5em;
+}
+
 .price-raw-class {
   max-width: 100%;
   -webkit-line-clamp: 1;
@@ -44,4 +47,5 @@
 
 .regular-price-class {
   text-decoration: line-through;
+  -webkit-line-clamp: 1;
 }

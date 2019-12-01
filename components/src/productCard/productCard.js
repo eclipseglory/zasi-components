@@ -1,50 +1,67 @@
 Component({
     properties: {
+        imageBackgroundColor1: {
+            value: '#ffffff',
+            type: String
+        },
+        imageBackgroundColor2: {
+            value: '#ffffff',
+            type: String
+        },
         backgroundColor: {
-            value: '#f4f9f4',
+            value: '#f7f7f7',
             type: String
         },
 
         titleColor: {
-            value: '#5c8d89',
+            value: '#393e46',
             type: String
         },
 
         placeOrderColor: {
-            value: '#5c8d89',
+            value: '#e5dfdf',
             type: String
         },
 
         cartColor: {
-            value: '#5c8d89',
+            value: '#e5dfdf',
             type: String
         },
 
         likeColor: {
-            value: '#74b49b',
+            value: '#fa4252',
             type: String
         },
 
         priceColor: {
-            value: '#74b49b',
+            value: '#fa4252',
             type: String
         },
 
+        buttonColor1: {
+            value: '#fe6845',
+            type: String
+        },
+        buttonColor2: {
+            value: '#fa4252',
+            type: String
+        },
+
+
         descriptionColor: {
-            value: '#a7d7c5',
+            value: '#5c636e',
             type: String
         },
 
         ratingTextColor: {
-            value: '#a7d7c5',
+            value: '#fe6845',
             type: String
         },
 
         starColor: {
-            value: '#a7d7c5',
+            value: '#fe6845',
             type: String
         },
-
         titleSize: {
             value: '1em',
             type: String
@@ -56,7 +73,7 @@ Component({
         },
 
         cartButtonSize: {
-            value: '1.5em',
+            value: '1em',
             type: String
         },
 
@@ -71,7 +88,7 @@ Component({
         },
 
         priceSize: {
-            value: '2em',
+            value: '1em',
             type: String
         },
 
@@ -109,7 +126,7 @@ Component({
         },
 
         imageMode: {
-            value: 'aspectFill',
+            value: 'aspectFit',
             type: String
         },
 
@@ -137,7 +154,7 @@ Component({
         },
 
         ratingSize: {
-            value: '0.5em',
+            value: '0.75em',
             type: String
         },
 
@@ -151,7 +168,7 @@ Component({
             type: Number
         },
         regularPricePrefix: {
-            value: undefined,
+            value: '￥',
             type: String
         },
         regularPriceSuffix: {
@@ -164,11 +181,11 @@ Component({
             type: Number
         },
         pricePrefix: {
-            value: undefined,
+            value: '￥',
             type: String
         },
         priceSuffix: {
-            value: ' 元',
+            value: undefined,
             type: String
         },
 
@@ -187,13 +204,11 @@ Component({
         }
     },
 
-    data: {
-    },
+    data: {},
 
     methods: {},
 
-    observers: {
-    },
+    observers: {},
 
     detached: function () {
     },
